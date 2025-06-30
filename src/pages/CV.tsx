@@ -17,7 +17,7 @@ const CV = () => {
         {/* CV Image */}
         <div className="glass-card rounded-3xl p-8 mb-8 animate-scale-in">
           <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold mb-4 text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">CV - Mattéo Grech</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">CV - Mattéo Grech</h2>
             <div className="flex justify-center">
               <img 
                 src="/lovable-uploads/8975e34f-f0dc-4b3b-ab5d-22c4dff4e2ad.png" 
@@ -36,7 +36,7 @@ const CV = () => {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Informations personnelles */}
           <div className="glass-card rounded-3xl p-6 animate-scale-in">
-            <h3 className="text-xl font-bold mb-4 text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Informations personnelles</h3>
+            <h3 className="text-xl font-bold mb-4 text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Informations personnelles</h3>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-primary" />
@@ -59,7 +59,7 @@ const CV = () => {
 
           {/* Compétences clés */}
           <div className="glass-card rounded-3xl p-6 animate-scale-in" style={{animationDelay: '0.1s'}}>
-            <h3 className="text-xl font-bold mb-4 text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Compétences clés</h3>
+            <h3 className="text-xl font-bold mb-4 text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Compétences clés</h3>
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
