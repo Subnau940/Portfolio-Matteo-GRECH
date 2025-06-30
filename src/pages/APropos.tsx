@@ -52,14 +52,14 @@ const APropos = () => {
         <div className="glass-card rounded-3xl p-8 mb-12 animate-scale-in group">
           <div className="grid md:grid-cols-3 gap-8 items-center">
             <div className="text-center">
-              <div className="w-32 h-32 bg-gradient-to-br from-primary to-warm-500 rounded-3xl mx-auto mb-4 flex items-center justify-center text-white text-4xl font-bold transition-transform duration-300 group-hover:scale-105">
+              <div className="w-32 h-32 bg-gradient-to-br from-primary to-warm-500 rounded-3xl mx-auto mb-4 flex items-center justify-center text-black text-4xl font-bold transition-transform duration-300 group-hover:scale-105">
                 MG
               </div>
-              <h2 className="text-xl font-bold text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Mattéo Grech</h2>
+              <h2 className="text-xl font-bold text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Mattéo Grech</h2>
               <p className="text-muted-foreground">21 ans</p>
             </div>
             <div className="md:col-span-2">
-              <h3 className="text-2xl font-bold mb-4 text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Qui suis-je ?</h3>
+              <h3 className="text-2xl font-bold mb-4 text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Qui suis-je ?</h3>
               <p className="text-muted-foreground mb-4">
                 Étudiant passionné en BTS SIO SISR à l'ESICAD, je me spécialise dans 
                 l'administration système et réseau. Mon objectif est de devenir un expert 
@@ -77,13 +77,13 @@ const APropos = () => {
 
         {/* Mes valeurs */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8 text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Mes valeurs</h2>
+          <h2 className="text-3xl font-bold text-center mb-8 text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Mes valeurs</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {valeurs.map((valeur, index) => (
               <div key={index} className="glass-card rounded-3xl p-6 card-hover animate-scale-in group" style={{animationDelay: `${index * 0.1}s`}}>
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-primary to-warm-500 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
-                    <valeur.icon className="h-6 w-6 text-white" />
+                    <valeur.icon className="h-6 w-6 text-black" />
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-2 text-warm-700">{valeur.titre}</h3>
@@ -97,7 +97,7 @@ const APropos = () => {
 
         {/* Objectifs et ambitions */}
         <div className="glass-card rounded-3xl p-8 mb-12 animate-fade-in">
-          <h2 className="text-2xl font-bold mb-6 text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Mes objectifs</h2>
+          <h2 className="text-2xl font-bold mb-6 text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Mes objectifs</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h3 className="font-bold text-lg mb-3 text-primary">Court terme</h3>
@@ -138,7 +138,7 @@ const APropos = () => {
 
         {/* Centres d'intérêt */}
         <div className="glass-card rounded-3xl p-8 animate-scale-in">
-          <h2 className="text-2xl font-bold mb-6 text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Centres d'intérêt</h2>
+          <h2 className="text-2xl font-bold mb-6 text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">Centres d'intérêt</h2>
           <p className="text-muted-foreground mb-6">
             En dehors des études, j'aime explorer différents domaines qui nourrissent 
             ma passion pour la technologie et m'aident à maintenir un équilibre de vie.
