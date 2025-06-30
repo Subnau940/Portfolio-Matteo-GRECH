@@ -1,4 +1,5 @@
 
+import React from "react"
 import { Calendar, MapPin, Briefcase, GraduationCap } from "lucide-react"
 
 const Experiences = () => {

@@ -1,5 +1,5 @@
 
-import { Server, Shield, Network, Code, Users, Briefcase } from "lucide-react"
+import { Server, Shield, Network, Code, Users, Briefcase, BookOpen } from "lucide-react"
 
 const Filiere = () => {
   const competences = [

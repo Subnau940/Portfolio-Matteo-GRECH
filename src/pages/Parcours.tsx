@@ -1,4 +1,5 @@
 
+import React from "react"
 import { Calendar, MapPin, Award, BookOpen } from "lucide-react"
 
 const Parcours = () => {
