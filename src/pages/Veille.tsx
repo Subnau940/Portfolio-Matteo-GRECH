@@ -75,7 +75,7 @@ const Veille = () => {
 
         {/* Sources fiables */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold mb-8 text-center text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold mb-8 text-center text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
             Sources fiables à suivre
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -83,7 +83,7 @@ const Veille = () => {
               <div key={index} className="glass-card rounded-3xl p-6 card-hover animate-scale-in group" style={{animationDelay: `${index * 0.1}s`}}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-warm-500 to-warm-700 rounded-2xl flex items-center justify-center">
-                    <Globe className="h-6 w-6 text-white" />
+                    <Globe className="h-6 w-6 text-black" />
                   </div>
                   <h3 className="font-bold text-lg text-warm-700">{source.type}</h3>
                 </div>
@@ -102,7 +102,7 @@ const Veille = () => {
 
         {/* Outils d'alerte */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold mb-8 text-center text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold mb-8 text-center text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
             Outils d'alerte
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -110,7 +110,7 @@ const Veille = () => {
               <div key={index} className="glass-card rounded-3xl p-6 card-hover animate-scale-in group" style={{animationDelay: `${index * 0.1}s`}}>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-primary to-warm-500 rounded-2xl flex items-center justify-center">
-                    <outil.icon className="h-6 w-6 text-white" />
+                    <outil.icon className="h-6 w-6 text-black" />
                   </div>
                   <h3 className="font-bold text-lg text-warm-700">{outil.nom}</h3>
                 </div>
@@ -122,7 +122,7 @@ const Veille = () => {
 
         {/* Automatisation */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold mb-8 text-center text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold mb-8 text-center text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
             Automatisation
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -130,7 +130,7 @@ const Veille = () => {
               <div key={index} className="glass-card rounded-3xl p-6 card-hover animate-scale-in group" style={{animationDelay: `${index * 0.1}s`}}>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-warm-600 to-warm-800 rounded-2xl flex items-center justify-center">
-                    <item.icon className="h-6 w-6 text-white" />
+                    <item.icon className="h-6 w-6 text-black" />
                   </div>
                   <h3 className="font-bold text-lg text-warm-700">{item.titre}</h3>
                 </div>
@@ -142,7 +142,7 @@ const Veille = () => {
 
         {/* Organisation */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold mb-8 text-center text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold mb-8 text-center text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
             Organisation
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -150,7 +150,7 @@ const Veille = () => {
               <div key={index} className="glass-card rounded-3xl p-6 card-hover animate-scale-in group" style={{animationDelay: `${index * 0.1}s`}}>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-warm-700 to-warm-900 rounded-2xl flex items-center justify-center">
-                    <item.icon className="h-6 w-6 text-white" />
+                    <item.icon className="h-6 w-6 text-black" />
                   </div>
                   <h3 className="font-bold text-lg text-warm-700">{item.titre}</h3>
                 </div>
