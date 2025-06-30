@@ -14,6 +14,7 @@ import Parcours from "./pages/Parcours";
 import Filiere from "./pages/Filiere";
 import APropos from "./pages/APropos";
 import Experiences from "./pages/Experiences";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
                   <Route path="/filiere" element={<Filiere />} />
                   <Route path="/apropos" element={<APropos />} />
                   <Route path="/experiences" element={<Experiences />} />
+                  <Route path="/contact" element={<Contact />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>

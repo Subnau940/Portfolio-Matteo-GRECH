@@ -1,5 +1,5 @@
 
-import { Home, FolderOpen, FileText, GraduationCap, BookOpen, User, Briefcase } from "lucide-react"
+import { Home, FolderOpen, FileText, GraduationCap, BookOpen, User, Briefcase, Mail } from "lucide-react"
 import { NavLink } from "react-router-dom"
 import {
   Sidebar,
@@ -21,6 +21,7 @@ const items = [
   { title: "BTS SIO SISR", url: "/filiere", icon: BookOpen },
   { title: "À propos", url: "/apropos", icon: User },
   { title: "Expériences", url: "/experiences", icon: Briefcase },
+  { title: "Contact", url: "/contact", icon: Mail },
 ]
 
 export function AppSidebar() {
@@ -29,23 +30,23 @@ export function AppSidebar() {
 
   return (
     <Sidebar className={`${collapsed ? "w-16" : "w-64"} transition-all duration-300`}>
-      <SidebarContent className="bg-gradient-to-b from-warm-50 to-warm-100">
+      <SidebarContent className="bg-gradient-to-b from-warm-400 to-warm-600">
         <div className="p-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-2xl flex items-center justify-center text-primary-foreground font-bold text-xl">
-              P
+            <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center text-warm-600 font-bold text-xl">
+              M
             </div>
             {!collapsed && (
               <div>
-                <h2 className="font-bold text-lg text-foreground">Portfolio</h2>
-                <p className="text-sm text-muted-foreground">BTS SIO SISR</p>
+                <h2 className="font-bold text-lg text-white">Mattéo Grech</h2>
+                <p className="text-sm text-white/80">BTS SIO SISR</p>
               </div>
             )}
           </div>
         </div>
         
         <SidebarGroup>
-          <SidebarGroupLabel className={collapsed ? "sr-only" : ""}>Navigation</SidebarGroupLabel>
+          <SidebarGroupLabel className={collapsed ? "sr-only" : "text-white/70"}>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -57,8 +58,8 @@ export function AppSidebar() {
                       className={({ isActive }) =>
                         `flex items-center gap-3 px-3 py-3 rounded-2xl transition-all duration-200 ${
                           isActive 
-                            ? "bg-primary text-primary-foreground shadow-lg" 
-                            : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                            ? "bg-white text-warm-600 shadow-lg font-semibold" 
+                            : "text-black hover:bg-white/20 hover:text-white"
                         }`
                       }
                     >

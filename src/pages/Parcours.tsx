@@ -5,36 +5,28 @@ import { Calendar, MapPin, Award, BookOpen } from "lucide-react"
 const Parcours = () => {
   const etapes = [
     {
-      annee: "2025",
-      titre: "Obtention du BTS SIO SISR",
-      lieu: "ESICAD",
-      description: "Diplôme en Solutions d'Infrastructure, Systèmes et Réseaux",
+      annee: "2022-En cours",
+      titre: "BTS SIO SISR",
+      lieu: "Lycée Saint Joseph Pierre Rouge en Bac pro Système Numérique (futur bac pro Ciel)",
+      description: "Spécialité Solutions d'Infrastructure, Systèmes et Réseaux",
       statut: "En cours",
       type: "formation"
     },
     {
-      annee: "2024",
-      titre: "Stage Technicien Réseau",
-      lieu: "Entreprise ABC",
-      description: "6 semaines de stage en administration réseau et support utilisateur",
-      statut: "Terminé",
-      type: "experience"
-    },
-    {
-      annee: "2023",
-      titre: "Début BTS SIO SISR",
-      lieu: "ESICAD",
-      description: "Entrée en formation BTS Services Informatiques aux Organisations",
-      statut: "Terminé",
-      type: "formation"
-    },
-    {
-      annee: "2023",
-      titre: "Baccalauréat",
-      lieu: "Lycée Jean Moulin",
-      description: "Obtention du baccalauréat avec mention",
+      annee: "2020-2022",
+      titre: "Baccalauréat Professionnel",
+      lieu: "Lycée Pierre Mendes France bac pro MTNE (Métiers Des Transitions Numérique et Énergétique)",
+      description: "Formation de 5 mois",
       statut: "Terminé",
       type: "diplome"
+    },
+    {
+      annee: "2017-2021",
+      titre: "Collège",
+      lieu: "Collège Saint Jean Baptiste de la Salle Montpellier",
+      description: "Formation secondaire",
+      statut: "Terminé",
+      type: "formation"
     }
   ]
 
@@ -68,9 +60,9 @@ const Parcours = () => {
     <div className="min-h-screen bg-gradient-to-br from-warm-50 via-white to-warm-100 py-12">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Mon Parcours</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Mon Parcours Scolaire</h1>
           <p className="text-xl text-muted-foreground">
-            Retracez mon cheminement académique et professionnel
+            Retracez mon cheminement académique
           </p>
         </div>
 
@@ -117,16 +109,16 @@ const Parcours = () => {
         {/* Stats */}
         <div className="mt-16 grid md:grid-cols-3 gap-6">
           <div className="glass-card rounded-3xl p-6 text-center animate-scale-in">
-            <div className="text-3xl font-bold text-primary mb-2">2+</div>
+            <div className="text-3xl font-bold text-primary mb-2">6+</div>
             <p className="text-muted-foreground">Années d'études</p>
           </div>
           <div className="glass-card rounded-3xl p-6 text-center animate-scale-in" style={{animationDelay: '0.1s'}}>
-            <div className="text-3xl font-bold text-primary mb-2">10+</div>
-            <p className="text-muted-foreground">Projets réalisés</p>
+            <div className="text-3xl font-bold text-primary mb-2">3</div>
+            <p className="text-muted-foreground">Établissements</p>
           </div>
           <div className="glass-card rounded-3xl p-6 text-center animate-scale-in" style={{animationDelay: '0.2s'}}>
-            <div className="text-3xl font-bold text-primary mb-2">3+</div>
-            <p className="text-muted-foreground">Stages effectués</p>
+            <div className="text-3xl font-bold text-primary mb-2">2</div>
+            <p className="text-muted-foreground">Diplômes obtenus</p>
           </div>
         </div>
       </div>

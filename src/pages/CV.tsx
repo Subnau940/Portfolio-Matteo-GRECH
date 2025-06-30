@@ -27,6 +27,18 @@ const CV = () => {
           </button>
         </div>
 
+        {/* CV Embed */}
+        <div className="glass-card rounded-3xl p-8 mb-8 animate-fade-in">
+          <h2 className="text-2xl font-bold mb-6 text-center">Aperçu du CV</h2>
+          <div className="w-full h-[800px] rounded-2xl overflow-hidden shadow-lg">
+            <img 
+              src="/lovable-uploads/8975e34f-f0dc-4b3b-ab5d-22c4dff4e2ad.png" 
+              alt="CV de Mattéo Grech" 
+              className="w-full h-full object-contain bg-white"
+            />
+          </div>
+        </div>
+
         {/* CV Preview */}
         <div className="glass-card rounded-3xl p-8 animate-fade-in">
           <div className="grid md:grid-cols-3 gap-8">
@@ -34,24 +46,25 @@ const CV = () => {
             <div className="md:col-span-1">
               <div className="text-center mb-6">
                 <div className="w-24 h-24 bg-primary rounded-3xl mx-auto mb-4 flex items-center justify-center text-primary-foreground text-2xl font-bold">
-                  VN
+                  MG
                 </div>
-                <h3 className="text-xl font-bold">Votre Nom</h3>
-                <p className="text-muted-foreground">Étudiant BTS SIO SISR</p>
+                <h3 className="text-xl font-bold">Mattéo Grech</h3>
+                <p className="text-muted-foreground">Étudiant BTS SIO SISR - 18 ans</p>
+                <p className="text-sm text-muted-foreground">Alternance</p>
               </div>
               
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-primary" />
-                  <span className="text-sm">votre.email@example.com</span>
+                  <span className="text-sm">matteogrech@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="h-5 w-5 text-primary" />
-                  <span className="text-sm">06 XX XX XX XX</span>
+                  <span className="text-sm">06 56 04 28 46</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="h-5 w-5 text-primary" />
-                  <span className="text-sm">Votre ville, France</span>
+                  <span className="text-sm">252 Avenue Théofrege de Mercourt, 34000 Montpellier</span>
                 </div>
               </div>
 
@@ -59,16 +72,36 @@ const CV = () => {
                 <h4 className="font-bold mb-4">Compétences</h4>
                 <div className="space-y-3">
                   {[
-                    "Administration système",
-                    "Réseaux TCP/IP",
-                    "Windows Server",
-                    "Linux",
-                    "Virtualisation",
-                    "Sécurité informatique"
+                    "Sécurité informatique",
+                    "Langage technique",
+                    "Management de parc informatique (GLPI, phpGLPI)",
+                    "Polyvalence des OS",
+                    "Maintenance/réparation Hardware"
                   ].map((skill, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
                       <span className="text-sm">{skill}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <h4 className="font-bold mb-4">Centres d'intérêt</h4>
+                <div className="space-y-3">
+                  {[
+                    "Moto",
+                    "Boxe", 
+                    "Veille technologique",
+                    "Jeux vidéo",
+                    "Musculation",
+                    "Cybersécurité",
+                    "Cosmologie",
+                    "Musique"
+                  ].map((interest, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-warm-500 rounded-full"></div>
+                      <span className="text-sm">{interest}</span>
                     </div>
                   ))}
                 </div>
@@ -83,13 +116,13 @@ const CV = () => {
                 <div className="space-y-4">
                   <div className="border-l-4 border-primary pl-4">
                     <h4 className="font-semibold">BTS SIO SISR</h4>
-                    <p className="text-muted-foreground text-sm">ESICAD • 2023-2025</p>
+                    <p className="text-muted-foreground text-sm">Lycée Saint Joseph Pierre Rouge • 2022-En cours</p>
                     <p className="text-sm">Spécialité Solutions d'Infrastructure, Systèmes et Réseaux</p>
                   </div>
                   <div className="border-l-4 border-warm-300 pl-4">
-                    <h4 className="font-semibold">Baccalauréat</h4>
-                    <p className="text-muted-foreground text-sm">Lycée • 2023</p>
-                    <p className="text-sm">Mention [votre mention]</p>
+                    <h4 className="font-semibold">Bac Pro MTNE</h4>
+                    <p className="text-muted-foreground text-sm">Lycée Pierre Mendes France • 2020-2022</p>
+                    <p className="text-sm">Métiers Des Transitions Numérique et Énergétique (5 mois)</p>
                   </div>
                 </div>
               </section>
@@ -99,30 +132,37 @@ const CV = () => {
                 <h3 className="text-xl font-bold mb-4 text-primary">Expériences</h3>
                 <div className="space-y-4">
                   <div className="border-l-4 border-primary pl-4">
-                    <h4 className="font-semibold">Stage Technicien Informatique</h4>
-                    <p className="text-muted-foreground text-sm">Entreprise XYZ • Mai-Juin 2024</p>
-                    <p className="text-sm">Maintenance parc informatique, installation postes de travail</p>
+                    <h4 className="font-semibold">Stagiaire - Maintronic</h4>
+                    <p className="text-muted-foreground text-sm">1 mois</p>
+                    <p className="text-sm">Réparation matériel informatique, support utilisateur</p>
                   </div>
                   <div className="border-l-4 border-warm-300 pl-4">
-                    <h4 className="font-semibold">Job d'été</h4>
-                    <p className="text-muted-foreground text-sm">Été 2023</p>
-                    <p className="text-sm">Développement de compétences professionnelles</p>
+                    <h4 className="font-semibold">Stagiaire - CNRS</h4>
+                    <p className="text-muted-foreground text-sm">2 x 1 mois</p>
+                    <p className="text-sm">Gestion tickets, configuration multi-OS</p>
+                  </div>
+                  <div className="border-l-4 border-warm-400 pl-4">
+                    <h4 className="font-semibold">Stagiaire - Dell Technologie</h4>
+                    <p className="text-muted-foreground text-sm">1 mois</p>
+                    <p className="text-sm">Service technique, formatage Windows</p>
                   </div>
                 </div>
               </section>
 
-              {/* Certifications */}
+              {/* Savoir-être */}
               <section>
-                <h3 className="text-xl font-bold mb-4 text-primary">Certifications</h3>
+                <h3 className="text-xl font-bold mb-4 text-primary">Savoir-être</h3>
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="bg-warm-50 p-4 rounded-2xl">
-                    <h4 className="font-semibold">CCNA</h4>
-                    <p className="text-sm text-muted-foreground">En cours</p>
-                  </div>
-                  <div className="bg-warm-50 p-4 rounded-2xl">
-                    <h4 className="font-semibold">CompTIA A+</h4>
-                    <p className="text-sm text-muted-foreground">Prévu 2024</p>
-                  </div>
+                  {[
+                    "Assidu",
+                    "Persévérant", 
+                    "Curieux",
+                    "Esprit d'équipe"
+                  ].map((quality, index) => (
+                    <div key={index} className="bg-warm-50 p-4 rounded-2xl">
+                      <h4 className="font-semibold">{quality}</h4>
+                    </div>
+                  ))}
                 </div>
               </section>
             </div>

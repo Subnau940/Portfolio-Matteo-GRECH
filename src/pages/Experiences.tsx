@@ -6,66 +6,82 @@ const Experiences = () => {
   const experiences = [
     {
       type: "stage",
-      titre: "Technicien Support Informatique",
-      entreprise: "TechCorp Solutions",
-      lieu: "Lyon, France",
-      periode: "Mai - Juin 2024",
-      duree: "6 semaines",
-      description: "Maintenance du parc informatique, installation de postes de travail, support utilisateur niveau 1 et 2.",
-      competences: ["Support utilisateur", "Installation matériel", "Diagnostic pannes", "Documentation"],
+      titre: "Stagiaire Administrateur Système",
+      entreprise: "Maintronic",
+      lieu: "Montpellier, France",
+      periode: "1 mois",
+      duree: "1 mois",
+      description: "Stage informatique, prise en charge d'utilisateur, réparation de matériel informatique, réparation de tablette/téléphone",
+      competences: ["Support utilisateur", "Réparation matériel", "Diagnostic pannes", "Maintenance"],
       missions: [
-        "Résolution d'incidents techniques (hardware/software)",
-        "Déploiement de 25 nouveaux postes de travail",
-        "Mise à jour du système de ticketing",
-        "Formation utilisateurs aux nouvelles procédures"
+        "Prise en charge et assistance utilisateur",
+        "Réparation de matériel informatique",
+        "Réparation de tablettes et téléphones",
+        "Diagnostic et résolution de pannes techniques"
       ]
     },
     {
       type: "stage",
-      titre: "Assistant Administrateur Réseau",
-      entreprise: "NetworkPlus",
-      lieu: "Villeurbanne, France",
-      periode: "Janvier 2024",
-      duree: "4 semaines",
-      description: "Assistance dans l'administration réseau, surveillance des équipements, configuration switches et routeurs.",
-      competences: ["Administration réseau", "Cisco", "Monitoring", "VLAN"],
-      missions: [
-        "Configuration de VLANs sur switches Cisco",
-        "Surveillance réseau avec Nagios",
-        "Documentation de l'infrastructure existante",
-        "Tests de connectivité et diagnostic réseau"
-      ]
-    },
-    {
-      type: "job",
-      titre: "Employé Polyvalent",
-      entreprise: "TechStore",
-      lieu: "Lyon, France",
-      periode: "Juillet - Août 2023",
+      titre: "Stagiaire Support Informatique",
+      entreprise: "CNRS",
+      lieu: "Montpellier, France",
+      periode: "2 x 1 mois",
       duree: "2 mois",
-      description: "Vente de matériel informatique, conseil client, assistance technique basique.",
-      competences: ["Relation client", "Vente", "Conseil technique", "Gestion stock"],
+      description: "Stage informatique prise en charge de ticket utilisateur, Configuration informatique dépannage et réparation d'ordinateur (Linux-Mac-Os-Windows)",
+      competences: ["Ticketing", "Configuration système", "Multi-OS", "Dépannage"],
       missions: [
-        "Accueil et conseil clientèle",
-        "Vente de matériel informatique et périphériques",
-        "Assistance technique simple (installation logiciels)",
-        "Gestion des stocks et réception marchandises"
+        "Gestion et résolution de tickets utilisateur",
+        "Configuration informatique multi-environnements",
+        "Dépannage et réparation d'ordinateurs",
+        "Support technique Linux, Mac OS et Windows"
       ]
     },
     {
-      type: "job",
-      titre: "Animateur Centre de Loisirs",
-      entreprise: "Mairie de Lyon",
-      lieu: "Lyon, France",
-      periode: "Été 2022",
+      type: "stage",
+      titre: "Stagiaire Technicien",
+      entreprise: "Dell Technologie",
+      lieu: "Montpellier, France",
+      periode: "1 mois",
       duree: "1 mois",
-      description: "Animation d'activités pour enfants, encadrement de groupes, organisation d'événements.",
-      competences: ["Animation", "Encadrement", "Organisation", "Communication"],
+      description: "Service technique prise en charge d'utilisateur, formattage d'ordinateur (Windows)",
+      competences: ["Service technique", "Formatage", "Windows", "Support client"],
       missions: [
-        "Animation d'activités ludiques et éducatives",
-        "Encadrement de groupes d'enfants (8-12 ans)",
-        "Organisation de sorties et événements",
-        "Collaboration avec l'équipe pédagogique"
+        "Prise en charge technique des utilisateurs",
+        "Formatage et réinstallation de systèmes Windows",
+        "Support client et assistance technique",
+        "Maintenance préventive et corrective"
+      ]
+    },
+    {
+      type: "stage",
+      titre: "Stagiaire Maintenance",
+      entreprise: "SPIE Informatique",
+      lieu: "Montpellier, France",
+      periode: "5 semaines",
+      duree: "5 semaines",
+      description: "Service de maintenance informatique, formatage d'ordinateur (Windows)",
+      competences: ["Maintenance informatique", "Formatage", "Windows", "Service client"],
+      missions: [
+        "Service de maintenance informatique préventive",
+        "Formatage et configuration de postes de travail",
+        "Assistance technique aux utilisateurs",
+        "Gestion du parc informatique"
+      ]
+    },
+    {
+      type: "stage",
+      titre: "Stagiaire Support",
+      entreprise: "Nano Réseaux",
+      lieu: "Montpellier, France",
+      periode: "1 semaine",
+      duree: "1 semaine",
+      description: "Assistance et service de sécurité informatique",
+      competences: ["Sécurité informatique", "Assistance", "Support technique", "Réseaux"],
+      missions: [
+        "Assistance en sécurité informatique",
+        "Support technique spécialisé",
+        "Audit de sécurité réseau",
+        "Mise en place de mesures de protection"
       ]
     }
   ]
@@ -88,22 +104,22 @@ const Experiences = () => {
         <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Mes Expériences</h1>
           <p className="text-xl text-muted-foreground">
-            Stages, jobs d'été et expériences professionnelles
+            Stages et expériences professionnelles
           </p>
         </div>
 
         {/* Stats rapides */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <div className="glass-card rounded-3xl p-6 text-center animate-scale-in">
-            <div className="text-3xl font-bold text-primary mb-2">4</div>
-            <p className="text-muted-foreground">Expériences</p>
+            <div className="text-3xl font-bold text-primary mb-2">5</div>
+            <p className="text-muted-foreground">Stages</p>
           </div>
           <div className="glass-card rounded-3xl p-6 text-center animate-scale-in" style={{animationDelay: '0.1s'}}>
-            <div className="text-3xl font-bold text-primary mb-2">13</div>
-            <p className="text-muted-foreground">Semaines de stage</p>
+            <div className="text-3xl font-bold text-primary mb-2">11</div>
+            <p className="text-muted-foreground">Semaines d'expérience</p>
           </div>
           <div className="glass-card rounded-3xl p-6 text-center animate-scale-in" style={{animationDelay: '0.2s'}}>
-            <div className="text-3xl font-bold text-primary mb-2">3</div>
+            <div className="text-3xl font-bold text-primary mb-2">5</div>
             <p className="text-muted-foreground">Entreprises</p>
           </div>
         </div>
