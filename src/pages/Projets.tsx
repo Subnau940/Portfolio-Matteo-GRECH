@@ -49,10 +49,10 @@ const Projets = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-warm-50 via-white to-warm-100 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-warm-50 via-black to-warm-100 py-12">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white bg-gradient-to-r from-warm-500 to-warm-700 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-black bg-gradient-to-r from-warm-500 to-warm-700 bg-clip-text text-transparent">
             Mes Projets
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -75,7 +75,7 @@ const Projets = () => {
                   <Calendar className="h-4 w-4 text-muted-foreground" />
                   <span className="text-sm text-muted-foreground">{projet.date}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
+                <h3 className="text-xl font-bold mb-3 text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
                   {projet.title}
                 </h3>
                 <p className="text-muted-foreground mb-4">{projet.description}</p>
