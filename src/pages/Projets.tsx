@@ -75,7 +75,7 @@ const Projets = () => {
                   <Calendar className="h-4 w-4 text-muted-foreground" />
                   <span className="text-sm text-muted-foreground">{projet.date}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-white bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
+                <h3 className="text-xl font-bold mb-3 text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
                   {projet.title}
                 </h3>
                 <p className="text-muted-foreground mb-4">{projet.description}</p>
