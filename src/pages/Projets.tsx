@@ -14,35 +14,19 @@ const Projets = () => {
     "Travail en mode projet"
   ],
   github: "#",
-  demoImages: [
-    "https://raw.githubusercontent.com/Subnau940/Portfolio-Matteo-GRECH/main/src/pages/1000016892.png",
-    "https://raw.githubusercontent.com/Subnau940/Portfolio-Matteo-GRECH/main/src/pages/1000016894.png"
-  ]
-};
+<button id="demoButton">Demo</button>
 
-export default function ProjectDemo() {
-  const [showImages, setShowImages] = useState(false);
+<script type="module">
+  const demoButton = document.getElementById("demoButton");
 
-  return (
-    <div>
-      <h2>{project.title}</h2>
-      <p>{project.description}</p>
-      <button 
-        onClick={() => setShowImages(!showImages)}
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-      >
-        Demo
-      </button>
-
-      {showImages && (
-        <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
-          {project.demoImages.map((img, idx) => (
-            <img key={idx} src={img} alt={`Preuve projet ${idx + 1}`} style={{ width: "300px", borderRadius: "8px" }} />
-          ))}
-        </div>
-      )}
-    </div>
-  );
+  demoButton.addEventListener("click", () => {
+    const images = [
+      "./src/pages/1000016892.png",
+      "./src/pages/1000016894.png"
+    ];
+    images.forEach(img => window.open(img, "_blank"));
+  });
+</script>
 }
     {
       title: "Co-révision du lexique interne de l'entreprise",
