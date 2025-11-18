@@ -74,7 +74,7 @@ const Projets = () => {
         "Détection d'intrusions"
       ],
       github: "#",
-      demo: "#"
+      demo: ["/pfsens.png"],
     },
     {
       title: "Implémentation d'un serveur Active Directory (AD-DS)",
@@ -88,7 +88,7 @@ const Projets = () => {
         "Configuration réseau"
       ],
       github: "#",
-      demo: "#"
+      demo: ["/ad-ds.png"],
     }
   ]
 
