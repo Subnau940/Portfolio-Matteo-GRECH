@@ -2,18 +2,22 @@ import { useState } from "react";
 import { ExternalLink, Github, Calendar } from "lucide-react";
 
 const Projets = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [showDemo, setShowDemo] = useState<{ [key: number]: boolean }>({});
+
+  const toggleDemo = (index: number) => {
+    setShowDemo(prev => ({ ...prev, [index]: !prev[index] }));
+  };
 
   const projets = [
     {
       title: "Supervision et gestion des alertes réseaux 4G et Wi-Fi",
-      description: "Mise en place d'un système de supervision pour suivre, contrôler et répertorier les alertes réseau (4G et Wi-Fi). Ce projet a permis de réduire significativement le nombre d'alertes, d'améliorer le suivi des incidents et de diminuer le backlog interne.",
+      description: "Mise en place d'un système ...",
       technologies: ["Supervision réseau", "4G", "Wi-Fi", "Gestion d'incidents"],
       date: "2024",
       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=300&fit=crop",
       competences: ["Gestion du patrimoine informatique", "Réponse aux incidents", "Travail en mode projet"],
       github: "#",
-      demo: ["/1000016892.png", "/1000016894.png"], // Ajout des images demo
+      demo: ["/1000016892.png", "/1000016894.png"],
     },
     {
       title: "Co-révision du lexique interne de l'entreprise",
@@ -157,27 +161,29 @@ const Projets = () => {
                     <Github className="h-4 w-4" />
                     Code
                   </a>
-                  <button
-                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-2xl hover:bg-primary/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                    Demo
-                  </button>
+                  {projet.demo !== "#" && (
+                    <button
+                      onClick={() => toggleDemo(index)}
+                      className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-2xl hover:bg-primary/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Demo
+                    </button>
+                  )}
                 </div>
 
-               {openIndex === index && projet.demo.length > 0 && (
-  <div className="mt-4 space-y-2">
-    {projet.demo.map((imgSrc, i) => (
-      <img
-        key={i}
-        src={imgSrc}
-        alt={`Demo ${i}`}
-        className="w-full rounded-lg border border-warm-200"
-      />
-    ))}
-  </div>
-)}
+                {showDemo[index] && projet.demo !== "#" && (
+                  <div className="mt-4 space-y-2">
+                    {projet.demo.map((imgSrc, i) => (
+                      <img
+                        key={i}
+                        src={imgSrc}
+                        alt={`Demo ${i}`}
+                        className="w-full rounded-lg border border-warm-200"
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           ))}
