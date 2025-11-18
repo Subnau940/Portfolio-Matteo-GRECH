@@ -51,7 +51,7 @@ const Projets = () => {
       description: "Déploiement complet de Zabbix pour superviser plusieurs machines Windows et Linux : installation du serveur, ajout des agents, configuration des hôtes, création de tableaux de bord et gestion des alertes.",
       technologies: ["Zabbix", "Linux", "Windows", "Supervision", "Monitoring"],
       date: "2025",
-      image: "https://unsplash.com/fr/photos/une-image-dun-reseau-informatique-avec-de-nombreuses-icones-differentes-2IZ9r2pgJjQ",
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=300&fit=crop",
       competences: [
         "Déploiement de services réseau",
         "Supervision d'infrastructure",
