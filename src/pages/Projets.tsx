@@ -65,7 +65,7 @@ const Projets = () => {
       description: "Installation de pfSense, configuration du package Snort, activation de l'IDS puis du mode IPS, mise en place des règles de détection pour protéger un réseau local contre les attaques.",
       technologies: ["pfSense", "Snort", "IDS", "IPS", "Sécurité réseau"],
       date: "2025",
-      image: "https://unsplash.com/fr/photos/un-clavier-dordinateur-avec-un-cadenas-sur-le-dessus-2T4l02ZYj-k",
+      image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y3liZXJ8ZW58MHx8MHx8fDI%3D",
       competences: [
         "Sécurisation réseau",
         "Analyse de trafic",
@@ -79,7 +79,7 @@ const Projets = () => {
       description: "Mise en place d'un contrôleur de domaine avec AD-DS, DNS intégré, création d'OU, gestion des utilisateurs, stratégies GPO et automatisation partielle des tâches d'administration.",
       technologies: ["Windows Server", "AD-DS", "DNS", "GPO", "Administration système"],
       date: "2025",
-      image: "https://unsplash.com/fr/photos/photo-de-cables-dordinateur-oZPwn40zCK4",
+      image: "https://images.unsplash.com/photo-1748366416622-8bd7b3530dd5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fGluZm9ybWF0aXF1ZXxlbnwwfHwwfHx8Mg%3D%3D",
       competences: [
         "Administration système",
         "Gestion des identités",
