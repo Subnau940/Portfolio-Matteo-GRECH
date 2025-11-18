@@ -3,19 +3,47 @@ import { ExternalLink, Github, Calendar } from "lucide-react"
 const Projets = () => {
   const projets = [
     {
-      title: "Supervision et gestion des alertes réseaux 4G et Wi-Fi",
-      description: "Mise en place d'un système de supervision pour suivre, contrôler et répertorier les alertes réseau (4G et Wi-Fi). Ce projet a permis de réduire significativement le nombre d'alertes, d'améliorer le suivi des incidents et de diminuer le backlog interne.",
-      technologies: ["Supervision réseau", "4G", "Wi-Fi", "Gestion d'incidents"],
-      date: "2024",
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=300&fit=crop",
-      competences: [
-        "Gestion du patrimoine informatique",
-        "Réponse aux incidents",
-        "Travail en mode projet"
-      ],
-      github: "#",
-      demo: "#"
-    },
+       title: "Supervision et gestion des alertes réseaux 4G et Wi-Fi",
+  description: "Mise en place d'un système de supervision pour suivre, contrôler et répertorier les alertes réseau (4G et Wi-Fi). Ce projet a permis de réduire significativement le nombre d'alertes, d'améliorer le suivi des incidents et de diminuer le backlog interne.",
+  technologies: ["Supervision réseau", "4G", "Wi-Fi", "Gestion d'incidents"],
+  date: "2024",
+  image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=300&fit=crop",
+  competences: [
+    "Gestion du patrimoine informatique",
+    "Réponse aux incidents",
+    "Travail en mode projet"
+  ],
+  github: "#",
+  demoImages: [
+    "https://raw.githubusercontent.com/Subnau940/Portfolio-Matteo-GRECH/main/src/pages/1000016892.png",
+    "https://raw.githubusercontent.com/Subnau940/Portfolio-Matteo-GRECH/main/src/pages/1000016894.png"
+  ]
+};
+
+export default function ProjectDemo() {
+  const [showImages, setShowImages] = useState(false);
+
+  return (
+    <div>
+      <h2>{project.title}</h2>
+      <p>{project.description}</p>
+      <button 
+        onClick={() => setShowImages(!showImages)}
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+      >
+        Demo
+      </button>
+
+      {showImages && (
+        <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
+          {project.demoImages.map((img, idx) => (
+            <img key={idx} src={img} alt={`Preuve projet ${idx + 1}`} style={{ width: "300px", borderRadius: "8px" }} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
     {
       title: "Co-révision du lexique interne de l'entreprise",
       description: "Participation à la mise à jour et à l'amélioration du lexique interne pour faciliter l'intégration des nouveaux collaborateurs. Ce travail collaboratif vise à améliorer la communication interne et contribue au développement professionnel de l'équipe.",
