@@ -14,7 +14,38 @@ const Projets = () => {
         "Travail en mode projet"
       ],
       github: "#",
-      demo: "#"
+import { useState } from "react";
+
+export default function DemoButton() {
+  const images = [
+    "https://raw.githubusercontent.com/Subnau940/Portfolio-Matteo-GRECH/main/src/pages/1000016892.png",
+    "https://raw.githubusercontent.com/Subnau940/Portfolio-Matteo-GRECH/main/src/pages/1000016894.png"
+  ];
+
+  const [current, setCurrent] = useState(0);
+
+  const handleClick = () => {
+    setCurrent((prev) => (prev + 1) % images.length);
+  };
+
+  return (
+    <div>
+      <button 
+        onClick={handleClick} 
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+      >
+        Demo
+      </button>
+      <div style={{ marginTop: "10px" }}>
+        <img 
+          src={images[current]} 
+          alt="Preuve projet" 
+          style={{ width: "300px", borderRadius: "8px" }} 
+        />
+      </div>
+    </div>
+  );
+}
     },
     {
       title: "Co-révision du lexique interne de l'entreprise",
