@@ -15,7 +15,7 @@ const Projets = () => {
   ],
   github: "#",
   demo: "#",
-},
+    },
     {
       title: "Co-révision du lexique interne de l'entreprise",
       description: "Participation à la mise à jour et à l'amélioration du lexique interne pour faciliter l'intégration des nouveaux collaborateurs. Ce travail collaboratif vise à améliorer la communication interne et contribue au développement professionnel de l'équipe.",
@@ -28,7 +28,7 @@ const Projets = () => {
         "Organisation du développement professionnel"
       ],
       github: "#",
-      demo: "#", 
+      demo: "#"
     },
     {
       title: "Veille informatique en cybersécurité",
