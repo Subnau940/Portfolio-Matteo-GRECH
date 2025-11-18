@@ -166,13 +166,18 @@ const Projets = () => {
                   </button>
                 </div>
 
-                {openIndex === index && projet.demo.length > 0 && (
-                  <div className="mt-4 space-y-2">
-                    {projet.demo.map((img, i) => (
-                      <img key={i} src={img} alt={`Demo ${i}`} className="w-full rounded-lg" />
-                    ))}
-                  </div>
-                )}
+               {openIndex === index && projet.demo.length > 0 && (
+  <div className="mt-4 space-y-2">
+    {projet.demo.map((imgSrc, i) => (
+      <img
+        key={i}
+        src={imgSrc}
+        alt={`Demo ${i}`}
+        className="w-full rounded-lg border border-warm-200"
+      />
+    ))}
+  </div>
+)}
               </div>
             </div>
           ))}
