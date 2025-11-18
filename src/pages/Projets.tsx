@@ -60,7 +60,7 @@ const Projets = () => {
         "Diagnostic et résolution d'incidents"
       ],
       github: "#",
-      demo: "#"
+      ["/zabbix.png", "/zabbix2.png"],
     },
     {
       title: "IDS/IPS avec Snort sur pfSense",
