@@ -1,4 +1,3 @@
-
 import { ExternalLink, Github, Calendar } from "lucide-react"
 
 const Projets = () => {
@@ -45,6 +44,49 @@ const Projets = () => {
       ],
       github: "#",
       demo: "#"
+    },
+    // ---- AJOUTS DEMANDÉS ----
+    {
+      title: "Supervision Zabbix d'un parc de machines",
+      description: "Déploiement complet de Zabbix pour superviser plusieurs machines Windows et Linux : installation du serveur, ajout des agents, configuration des hôtes, création de tableaux de bord et gestion des alertes.",
+      technologies: ["Zabbix", "Linux", "Windows", "Supervision", "Monitoring"],
+      date: "2025",
+      image: "https://images.unsplash.com/photo-1581091215367-59ab6a61f204?w=500&h=300&fit=crop",
+      competences: [
+        "Déploiement de services réseau",
+        "Supervision d'infrastructure",
+        "Diagnostic et résolution d'incidents"
+      ],
+      github: "#",
+      demo: "#"
+    },
+    {
+      title: "IDS/IPS avec Snort sur pfSense",
+      description: "Installation de pfSense, configuration du package Snort, activation de l'IDS puis du mode IPS, mise en place des règles de détection pour protéger un réseau local contre les attaques.",
+      technologies: ["pfSense", "Snort", "IDS", "IPS", "Sécurité réseau"],
+      date: "2025",
+      image: "https://images.unsplash.com/photo-1558494949-73363a46f97d?w=500&h=300&fit=crop",
+      competences: [
+        "Sécurisation réseau",
+        "Analyse de trafic",
+        "Détection d'intrusions"
+      ],
+      github: "#",
+      demo: "#"
+    },
+    {
+      title: "Implémentation d'un serveur Active Directory (AD-DS)",
+      description: "Mise en place d'un contrôleur de domaine avec AD-DS, DNS intégré, création d'OU, gestion des utilisateurs, stratégies GPO et automatisation partielle des tâches d'administration.",
+      technologies: ["Windows Server", "AD-DS", "DNS", "GPO", "Administration système"],
+      date: "2025",
+      image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d5?w=500&h=300&fit=crop",
+      competences: [
+        "Administration système",
+        "Gestion des identités",
+        "Configuration réseau"
+      ],
+      github: "#",
+      demo: "#"
     }
   ]
 
@@ -62,10 +104,10 @@ const Projets = () => {
 
         <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
           {projets.map((projet, index) => (
-            <div key={index} className="glass-card rounded-3xl overflow-hidden card-hover animate-scale-in group" style={{animationDelay: `${index * 0.1}s`}}>
+            <div key={index} className="glass-card rounded-3xl overflow-hidden card-hover animate-scale-in group" style={{ animationDelay: `${index * 0.1}s` }}>
               <div className="aspect-video bg-gradient-to-br from-primary/20 to-warm-200/20 overflow-hidden">
-                <img 
-                  src={projet.image} 
+                <img
+                  src={projet.image}
                   alt={projet.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -79,7 +121,7 @@ const Projets = () => {
                   {projet.title}
                 </h3>
                 <p className="text-muted-foreground mb-4">{projet.description}</p>
-                
+
                 <div className="mb-4">
                   <h4 className="font-semibold text-sm mb-2 text-warm-700">Compétences développées :</h4>
                   <ul className="text-sm text-muted-foreground space-y-1">
@@ -91,7 +133,7 @@ const Projets = () => {
                     ))}
                   </ul>
                 </div>
-                
+
                 <div className="flex flex-wrap gap-2 mb-4">
                   {projet.technologies.map((tech, techIndex) => (
                     <span key={techIndex} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium transition-all duration-200 hover:bg-primary/20 hover:scale-105">
@@ -99,7 +141,7 @@ const Projets = () => {
                     </span>
                   ))}
                 </div>
-                
+
                 <div className="flex gap-3">
                   <a href={projet.github} className="flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-2xl hover:bg-foreground/90 transition-all duration-200 hover:scale-105 hover:shadow-lg">
                     <Github className="h-4 w-4" />
