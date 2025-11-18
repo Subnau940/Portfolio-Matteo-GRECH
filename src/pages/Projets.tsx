@@ -87,7 +87,7 @@ const Projets = () => {
       ],
       github: "#",
       demo: "#"
-    },
+    }
   ]
 
   return (
