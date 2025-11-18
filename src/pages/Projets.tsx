@@ -51,7 +51,7 @@ const Projets = () => {
       description: "Déploiement complet de Zabbix pour superviser plusieurs machines Windows et Linux : installation du serveur, ajout des agents, configuration des hôtes, création de tableaux de bord et gestion des alertes.",
       technologies: ["Zabbix", "Linux", "Windows", "Supervision", "Monitoring"],
       date: "2025",
-      image: "https://images.unsplash.com/photo-1581091215367-59ab6a61f204?w=500&h=300&fit=crop",
+      image: "https://unsplash.com/fr/photos/une-image-dun-reseau-informatique-avec-de-nombreuses-icones-differentes-2IZ9r2pgJjQ",
       competences: [
         "Déploiement de services réseau",
         "Supervision d'infrastructure",
@@ -65,7 +65,7 @@ const Projets = () => {
       description: "Installation de pfSense, configuration du package Snort, activation de l'IDS puis du mode IPS, mise en place des règles de détection pour protéger un réseau local contre les attaques.",
       technologies: ["pfSense", "Snort", "IDS", "IPS", "Sécurité réseau"],
       date: "2025",
-      image: "https://images.unsplash.com/photo-1558494949-73363a46f97d?w=500&h=300&fit=crop",
+      image: "https://unsplash.com/fr/photos/un-clavier-dordinateur-avec-un-cadenas-sur-le-dessus-2T4l02ZYj-k",
       competences: [
         "Sécurisation réseau",
         "Analyse de trafic",
@@ -79,7 +79,7 @@ const Projets = () => {
       description: "Mise en place d'un contrôleur de domaine avec AD-DS, DNS intégré, création d'OU, gestion des utilisateurs, stratégies GPO et automatisation partielle des tâches d'administration.",
       technologies: ["Windows Server", "AD-DS", "DNS", "GPO", "Administration système"],
       date: "2025",
-      image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d5?w=500&h=300&fit=crop",
+      image: "https://unsplash.com/fr/photos/photo-de-cables-dordinateur-oZPwn40zCK4",
       competences: [
         "Administration système",
         "Gestion des identités",
