@@ -1,20 +1,26 @@
+import { useState } from "react";
 import { ExternalLink, Github, Calendar } from "lucide-react"
 
 const Projets = () => {
+  const [showDemoImages, setShowDemoImages] = useState(false); // contrôle affichage images
+
   const projets = [
     {
        title: "Supervision et gestion des alertes réseaux 4G et Wi-Fi",
-  description: "Mise en place d'un système de supervision pour suivre, contrôler et répertorier les alertes réseau (4G et Wi-Fi). Ce projet a permis de réduire significativement le nombre d'alertes, d'améliorer le suivi des incidents et de diminuer le backlog interne.",
-  technologies: ["Supervision réseau", "4G", "Wi-Fi", "Gestion d'incidents"],
-  date: "2024",
-  image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=300&fit=crop",
-  competences: [
-    "Gestion du patrimoine informatique",
-    "Réponse aux incidents",
-    "Travail en mode projet"
-  ],
-  github: "#",
-  demo: "#",
+       description: "Mise en place d'un système de supervision pour suivre, contrôler et répertorier les alertes réseau (4G et Wi-Fi). Ce projet a permis de réduire significativement le nombre d'alertes, d'améliorer le suivi des incidents et de diminuer le backlog interne.",
+       technologies: ["Supervision réseau", "4G", "Wi-Fi", "Gestion d'incidents"],
+       date: "2024",
+       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=300&fit=crop",
+       competences: [
+         "Gestion du patrimoine informatique",
+         "Réponse aux incidents",
+         "Travail en mode projet"
+       ],
+       github: "#",
+       demoImages: [
+         "/1000016892.png",
+         "/1000016894.png"
+       ],
     },
     {
       title: "Co-révision du lexique interne de l'entreprise",
