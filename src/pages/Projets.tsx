@@ -45,7 +45,6 @@ const Projets = () => {
       github: "#",
       demo: "#"
     },
-    // ---- AJOUTS DEMANDÉS ----
     {
       title: "Supervision Zabbix d'un parc de machines",
       description: "Déploiement complet de Zabbix pour superviser plusieurs machines Windows et Linux : installation du serveur, ajout des agents, configuration des hôtes, création de tableaux de bord et gestion des alertes.",
