@@ -14,19 +14,7 @@ const Projets = () => {
     "Travail en mode projet"
   ],
   github: "#",
-<button id="demoButton">Demo</button>
-
-<script type="module">
-  const demoButton = document.getElementById("demoButton");
-
-  demoButton.addEventListener("click", () => {
-    const images = [
-      "./src/pages/1000016892.png",
-      "./src/pages/1000016894.png"
-    ];
-    images.forEach(img => window.open(img, "_blank"));
-  });
-</script>
+  demo: "#"
 }
     {
       title: "Co-révision du lexique interne de l'entreprise",
