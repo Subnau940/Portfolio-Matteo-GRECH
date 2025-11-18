@@ -31,7 +31,7 @@ const Projets = () => {
         "Organisation du développement professionnel"
       ],
       github: "#",
-      demo: ["/1000016898.png"]
+      demo: ["/1000016898.png"],
     },
     {
       title: "Veille informatique en cybersécurité",
