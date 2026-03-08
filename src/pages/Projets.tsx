@@ -1,11 +1,18 @@
 import { useState } from "react";
-import { ExternalLink, Github, Calendar } from "lucide-react";
+import { ExternalLink, Github, Calendar, ChevronDown, ChevronUp } from "lucide-react";
+
+const DESCRIPTION_LIMIT = 160;
 
 const Projets = () => {
   const [showDemo, setShowDemo] = useState<{ [key: number]: boolean }>({});
+  const [expandedDescs, setExpandedDescs] = useState<{ [key: number]: boolean }>({});
 
   const toggleDemo = (index: number) => {
     setShowDemo(prev => ({ ...prev, [index]: !prev[index] }));
+  };
+
+  const toggleDesc = (index: number) => {
+    setExpandedDescs(prev => ({ ...prev, [index]: !prev[index] }));
   };
 
   const projets = [
@@ -108,10 +115,29 @@ const Projets = () => {
       ],
       github: "#",
       demo: "#",
-    }
-  ]
+    },
+    {
+      title: "Déploiement solution de supervision Zabbix (E6 BTS SIO SISR)",
+      description: "Mission E6 : déploiement d'une solution de supervision réseau et système Zabbix 7.0 LTS sur infrastructure virtualisée Proxmox pour une mise en situation professionnelle. Création d'une VM Ubuntu 22.04 (IP fixe 10.3.0.50/16, QEMU Guest Agent), déploiement du serveur Zabbix avec backend MySQL 8.0, configuration du frontend Apache2/PHP et de l'interface d'administration. Déploiement des agents sur les hôtes Linux supervisés, création des hôtes et association des templates. Supervision temps réel des métriques système (CPU, RAM, disque, réseau, services), configuration des triggers d'alerte, mise en place de dashboards personnalisés et tests de supervision (arrêt de services, vérification des alertes).",
+      technologies: ["Zabbix", "Supervision", "Monitoring", "Proxmox", "Linux", "MySQL", "Infrastructure", "BTS SIO SISR"],
+      date: "2025",
+      image: "https://images.unsplash.com/photo-1674027444485-cec3da58eef4?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      competences: [
+        "Administration Linux & virtualisation Proxmox",
+        "Déploiement Zabbix 7.0 LTS (Server + Frontend + Agent)",
+        "Configuration MySQL 8.0 et gestion des droits",
+        "Déploiement Apache2 / PHP",
+        "Supervision d'infrastructure (CPU, RAM, disque, réseau)",
+        "Configuration des triggers et alertes",
+        "Création de dashboards personnalisés",
+        "Tests de supervision et dépannage système"
+      ],
+      github: "#",
+      demo: "#",
+    },
+  ];
 
-   return (
+  return (
     <div className="min-h-screen bg-gradient-to-br from-warm-50 via-white to-warm-100 py-12">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12 animate-fade-in">
@@ -124,88 +150,112 @@ const Projets = () => {
         </div>
 
         <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
-          {projets.map((projet, index) => (
-            <div
-              key={index}
-              className="glass-card rounded-3xl overflow-hidden card-hover animate-scale-in group"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="aspect-video bg-gradient-to-br from-primary/20 to-warm-200/20 overflow-hidden">
-                <img
-                  src={projet.image}
-                  alt={projet.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
+          {projets.map((projet, index) => {
+            const isLong = projet.description.length > DESCRIPTION_LIMIT;
+            const isExpanded = expandedDescs[index];
+            const displayedDescription =
+              isLong && !isExpanded
+                ? projet.description.slice(0, DESCRIPTION_LIMIT).trimEnd() + "…"
+                : projet.description;
 
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Calendar className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">{projet.date}</span>
+            return (
+              <div
+                key={index}
+                className="glass-card rounded-3xl overflow-hidden card-hover animate-scale-in group"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="aspect-video bg-gradient-to-br from-primary/20 to-warm-200/20 overflow-hidden">
+                  <img
+                    src={projet.image}
+                    alt={projet.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
                 </div>
 
-                <h3 className="text-xl font-bold mb-3 text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
-                  {projet.title}
-                </h3>
-                <p className="text-muted-foreground mb-4">{projet.description}</p>
+                <div className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Calendar className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-sm text-muted-foreground">{projet.date}</span>
+                  </div>
 
-                <div className="mb-4">
-                  <h4 className="font-semibold text-sm mb-2 text-warm-700">Compétences développées :</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    {projet.competences.map((comp, compIndex) => (
-                      <li key={compIndex} className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-warm-500 rounded-full"></div>
-                        {comp}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  <h3 className="text-xl font-bold mb-3 text-black bg-gradient-to-r from-warm-600 to-warm-800 bg-clip-text text-transparent">
+                    {projet.title}
+                  </h3>
 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {projet.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium transition-all duration-200 hover:bg-primary/20 hover:scale-105"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                  <div className="mb-4">
+                    <p className="text-muted-foreground">{displayedDescription}</p>
+                    {isLong && (
+                      <button
+                        onClick={() => toggleDesc(index)}
+                        className="mt-1 flex items-center gap-1 text-sm text-warm-600 hover:text-warm-800 font-medium transition-colors duration-200"
+                      >
+                        {isExpanded ? (
+                          <>Voir moins <ChevronUp className="h-4 w-4" /></>
+                        ) : (
+                          <>Voir plus <ChevronDown className="h-4 w-4" /></>
+                        )}
+                      </button>
+                    )}
+                  </div>
 
-                <div className="flex gap-3 mb-4">
-                  <a
-                    href={projet.github}
-                    className="flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-2xl hover:bg-foreground/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
-                  >
-                    <Github className="h-4 w-4" />
-                    Code
-                  </a>
-                  {projet.demo !== "#" && (
-                    <button
-                      onClick={() => toggleDemo(index)}
-                      className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-2xl hover:bg-primary/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      Demo
-                    </button>
-                  )}
-                </div>
+                  <div className="mb-4">
+                    <h4 className="font-semibold text-sm mb-2 text-warm-700">Compétences développées :</h4>
+                    <ul className="text-sm text-muted-foreground space-y-1">
+                      {projet.competences.map((comp, compIndex) => (
+                        <li key={compIndex} className="flex items-center gap-2">
+                          <div className="w-1.5 h-1.5 bg-warm-500 rounded-full"></div>
+                          {comp}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                {showDemo[index] && projet.demo !== "#" && (
-                  <div className="mt-4 space-y-2">
-                    {projet.demo.map((imgSrc, i) => (
-                      <img
-                        key={i}
-                        src={imgSrc}
-                        alt={`Demo ${i}`}
-                        className="w-full rounded-lg border border-warm-200"
-                      />
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {projet.technologies.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium transition-all duration-200 hover:bg-primary/20 hover:scale-105"
+                      >
+                        {tech}
+                      </span>
                     ))}
                   </div>
-                )}
+
+                  <div className="flex gap-3 mb-4">
+                    <a
+                      href={projet.github}
+                      className="flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-2xl hover:bg-foreground/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                    >
+                      <Github className="h-4 w-4" />
+                      Code
+                    </a>
+                    {projet.demo !== "#" && (
+                      <button
+                        onClick={() => toggleDemo(index)}
+                        className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-2xl hover:bg-primary/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                        Demo
+                      </button>
+                    )}
+                  </div>
+
+                  {showDemo[index] && projet.demo !== "#" && (
+                    <div className="mt-4 space-y-2">
+                      {projet.demo.map((imgSrc, i) => (
+                        <img
+                          key={i}
+                          src={imgSrc}
+                          alt={`Demo ${i}`}
+                          className="w-full rounded-lg border border-warm-200"
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
