@@ -89,6 +89,25 @@ const Projets = () => {
       ],
       github: "#",
       demo: ["/ad-ds.png"],
+    },
+    {
+      title: "Déploiement SIEM/XDR Wazuh – Client CUB (E6 BTS SIO SISR)",
+      description: "Mission E6 en tant qu'ESN Securitech : déploiement d'une solution SIEM/XDR Wazuh sur l'infrastructure Proxmox de l'incubateur CUB. Installation du serveur Wazuh (Manager + Indexer OpenSearch + Dashboard) sur Ubuntu Server 24.04, configuration de 2 agents (Debian 12 DHCP, Windows Server 2019 AD). Hardening CIS Benchmark réalisé sur les deux agents. Simulation d'attaque brute force SSH via Hydra (14,3 millions de tentatives, dictionnaire rockyou.txt) depuis Kali Linux, détection en temps réel par Wazuh (17 000+ alertes) et blocage automatique de l'IP attaquante via Active Response (firewall-drop).",
+      technologies: ["Wazuh", "SIEM", "XDR", "SOC", "Proxmox", "Linux", "Hardening", "CIS Benchmark", "Cybersécurité", "BTS SIO SISR"],
+      date: "2025",
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=60",
+      competences: [
+        "Administration Linux & Windows Server",
+        "Virtualisation Proxmox",
+        "Déploiement et configuration SIEM (Wazuh / OpenSearch)",
+        "Hardening CIS Benchmark (SCA)",
+        "Détection d'intrusion et réponse aux incidents",
+        "Active Response automatique (firewall-drop)",
+        "Simulation d'attaque (Hydra, brute force SSH)",
+        "Configuration rsyslog, UFW, iptables, Filebeat"
+      ],
+      github: "#",
+      demo: "#",
     }
   ]
 
