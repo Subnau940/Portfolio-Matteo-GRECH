@@ -1,6 +1,6 @@
+import React, { useState } from "react"
 import { Mail, Phone, MapPin, Shield, Network, Monitor, Dumbbell, Bike, Telescope, BookOpen, GraduationCap, Award, Calendar, CheckCircle, Download, FileText } from "lucide-react"
 import { Link } from "react-router-dom"
-import { useState } from "react"
 
 const APropos = () => {
   const [showCV, setShowCV] = useState(false)
@@ -65,9 +65,33 @@ const APropos = () => {
   ]
 
   const certifications = [
-    { titre: "MOOC SecNumAcadémie", organisme: "ANSSI", icon: "🛡️" },
-    { titre: "Introduction à la Cybersécurité", organisme: "Cisco", icon: "🔐" },
-    { titre: "Bac Pro SN", organisme: "Éducation Nationale – Mention Bien", icon: "🎓" },
+    {
+      titre: "MOOC SecNumAcadémie",
+      organisme: "ANSSI",
+      logo: "/anssi-logo.png",
+      logoFallback: "🛡️",
+      link: null,
+      download: "/Certification-MOOC.pdf",
+      downloadLabel: "Télécharger le diplôme",
+    },
+    {
+      titre: "Introduction à la Cybersécurité",
+      organisme: "Cisco Networking Academy",
+      logo: "https://images.credly.com/badges/0fd07c77-dd32-4272-b926-6d0701af5bfb/image.png",
+      logoFallback: "🔐",
+      link: "https://www.credly.com/badges/0fd07c77-dd32-4272-b926-6d0701af5bfb/linked_in_profile",
+      download: null,
+      downloadLabel: null,
+    },
+    {
+      titre: "Bac Pro Système et Numérique",
+      organisme: "Éducation Nationale – Mention Bien",
+      logo: null,
+      logoFallback: "🎓",
+      link: null,
+      download: null,
+      downloadLabel: null,
+    },
   ]
 
   const statutColor = (statut: string) => {
@@ -213,20 +237,59 @@ const APropos = () => {
           </div>
         </div>
 
-        {/* Certifications */}
+        {/* Diplômes / Certifications */}
         <div className="glass-card rounded-3xl p-8 mb-8 animate-scale-in">
           <h2 className="text-2xl font-bold mb-6 text-warm-700 flex items-center gap-3">
             <Award className="h-6 w-6" />
-            Certifications
+            Diplômes / Certifications
           </h2>
           <div className="grid md:grid-cols-3 gap-4">
-            {certifications.map((cert, i) => (
-              <div key={i} className="flex flex-col items-center p-5 bg-warm-50 rounded-2xl border border-warm-100 hover:border-warm-300 transition-all duration-200 hover:scale-105 text-center">
-                <span className="text-3xl mb-3">{cert.icon}</span>
-                <p className="font-bold text-warm-700 text-sm mb-1">{cert.titre}</p>
-                <p className="text-xs text-muted-foreground">{cert.organisme}</p>
-              </div>
-            ))}
+            {certifications.map((cert, i) => {
+              const CardWrapper = cert.link
+                ? ({ children }: { children: React.ReactNode }) => (
+                    <a href={cert.link!} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-5 bg-warm-50 rounded-2xl border border-warm-100 hover:border-warm-300 transition-all duration-200 hover:scale-105 text-center cursor-pointer">
+                      {children}
+                    </a>
+                  )
+                : ({ children }: { children: React.ReactNode }) => (
+                    <div className="flex flex-col items-center p-5 bg-warm-50 rounded-2xl border border-warm-100 hover:border-warm-300 transition-all duration-200 hover:scale-105 text-center">
+                      {children}
+                    </div>
+                  )
+              return (
+                <CardWrapper key={i}>
+                  {cert.logo ? (
+                    <img
+                      src={cert.logo}
+                      alt={cert.organisme}
+                      className="h-16 w-16 object-contain mb-3 rounded-xl"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none"
+                        const span = e.currentTarget.nextElementSibling as HTMLElement
+                        if (span) span.style.display = "block"
+                      }}
+                    />
+                  ) : null}
+                  <span className={`text-3xl mb-3 ${cert.logo ? "hidden" : ""}`}>{cert.logoFallback}</span>
+                  <p className="font-bold text-warm-700 text-sm mb-1">{cert.titre}</p>
+                  <p className="text-xs text-muted-foreground mb-3">{cert.organisme}</p>
+                  {cert.link && (
+                    <span className="text-xs text-blue-600 font-medium">Voir le badge ↗</span>
+                  )}
+                  {cert.download && (
+                    <a
+                      href={cert.download}
+                      download
+                      onClick={(e) => e.stopPropagation()}
+                      className="flex items-center gap-1 text-xs text-warm-600 hover:text-warm-800 font-medium mt-1 transition-colors"
+                    >
+                      <Download className="h-3 w-3" />
+                      {cert.downloadLabel}
+                    </a>
+                  )}
+                </CardWrapper>
+              )
+            })}
           </div>
         </div>
 
