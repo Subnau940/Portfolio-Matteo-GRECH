@@ -1,189 +1,142 @@
-
-import { Mail, Phone, MapPin, Instagram, Linkedin, Facebook, Twitter } from "lucide-react"
+import { Mail, Phone, MapPin, Linkedin } from "lucide-react"
 
 const Contact = () => {
   const contactInfo = {
-    email: "matteogrech@gmail.com",
-    phone: "06 56 04 28 46",
-    address: "252 Avenue Théofrege de Mercourt, 34000 Montpellier"
+    email: "matteo1grech@gmail.com",
+    phone: "06 34 04 28 46",
+    ville: "Montpellier 34000",
   }
-
-  const socialLinks = [
-    {
-      name: "Instagram",
-      icon: Instagram,
-      url: "#",
-      color: "bg-gradient-to-r from-purple-500 to-pink-500",
-      hoverColor: "hover:from-purple-600 hover:to-pink-600"
-    },
-    {
-      name: "LinkedIn",
-      icon: Linkedin,
-      url: "#",
-      color: "bg-blue-600",
-      hoverColor: "hover:bg-blue-700"
-    },
-    {
-      name: "Facebook",
-      icon: Facebook,
-      url: "#",
-      color: "bg-blue-500",
-      hoverColor: "hover:bg-blue-600"
-    },
-    {
-      name: "X (Twitter)",
-      icon: Twitter,
-      url: "#",
-      color: "bg-black",
-      hoverColor: "hover:bg-gray-800"
-    }
-  ]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-warm-50 via-white to-warm-100 py-12">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-warm-500 to-warm-700 bg-clip-text text-transparent">
+            Contact
+          </h1>
           <p className="text-xl text-muted-foreground">
             N'hésitez pas à me contacter pour toute opportunité ou question
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Informations de contact */}
+          {/* Coordonnées */}
           <div className="space-y-6">
             <div className="glass-card rounded-3xl p-8 animate-fade-in">
-              <h2 className="text-2xl font-bold mb-6">Mes coordonnées</h2>
-              
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center">
-                    <Mail className="h-6 w-6 text-primary-foreground" />
+              <h2 className="text-2xl font-bold mb-6 text-warm-700">Mes coordonnées</h2>
+              <div className="space-y-5">
+                <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 bg-gradient-to-br from-warm-400 to-warm-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Email professionnel</h3>
-                    <a 
-                      href={`mailto:${contactInfo.email}`}
-                      className="text-primary hover:text-primary/80 transition-colors"
-                    >
+                    <h3 className="font-semibold text-sm text-muted-foreground mb-0.5">Email</h3>
+                    <span className="text-warm-600 group-hover:text-warm-800 transition-colors font-medium">
                       {contactInfo.email}
-                    </a>
+                    </span>
                   </div>
-                </div>
+                </a>
 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-warm-500 rounded-2xl flex items-center justify-center">
+                <a href={`tel:${contactInfo.phone.replace(/\s/g, "")}`} className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 bg-gradient-to-br from-warm-400 to-warm-600 rounded-2xl flex items-center justify-center flex-shrink-0">
                     <Phone className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Téléphone</h3>
-                    <a 
-                      href={`tel:${contactInfo.phone.replace(/\s/g, '')}`}
-                      className="text-primary hover:text-primary/80 transition-colors"
-                    >
+                    <h3 className="font-semibold text-sm text-muted-foreground mb-0.5">Téléphone</h3>
+                    <span className="text-warm-600 group-hover:text-warm-800 transition-colors font-medium">
                       {contactInfo.phone}
-                    </a>
+                    </span>
                   </div>
-                </div>
+                </a>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-warm-600 rounded-2xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-warm-400 to-warm-600 rounded-2xl flex items-center justify-center flex-shrink-0">
                     <MapPin className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Adresse</h3>
-                    <p className="text-muted-foreground">{contactInfo.address}</p>
+                    <h3 className="font-semibold text-sm text-muted-foreground mb-0.5">Localisation</h3>
+                    <span className="font-medium">{contactInfo.ville}</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Disponibilité */}
-            <div className="glass-card rounded-3xl p-8 animate-fade-in" style={{animationDelay: '0.1s'}}>
-              <h2 className="text-2xl font-bold mb-4">Disponibilité</h2>
+            <div className="glass-card rounded-3xl p-8 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+              <h2 className="text-xl font-bold mb-4 text-warm-700">Disponibilité</h2>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span>Disponible pour alternance</span>
+                  <span className="text-sm">Disponible pour alternance</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span>Ouvert aux stages</span>
+                  <span className="text-sm">Ouvert aux opportunités cybersécurité / réseau</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-warm-500 rounded-full"></div>
-                  <span>Projets collaboratifs</span>
+                  <span className="text-sm">Projets collaboratifs</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Réseaux sociaux */}
+          {/* Actions */}
           <div className="space-y-6">
-            <div className="glass-card rounded-3xl p-8 animate-fade-in" style={{animationDelay: '0.2s'}}>
-              <h2 className="text-2xl font-bold mb-6">Retrouvez-moi sur</h2>
-              
-              <div className="grid grid-cols-2 gap-4">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    className={`${social.color} ${social.hoverColor} text-white p-6 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex flex-col items-center justify-center text-center group`}
-                    style={{animationDelay: `${0.3 + (index * 0.1)}s`}}
-                  >
-                    <social.icon className="h-8 w-8 mb-3 group-hover:scale-110 transition-transform" />
-                    <span className="font-semibold">{social.name}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Message de contact */}
-            <div className="glass-card rounded-3xl p-8 animate-fade-in" style={{animationDelay: '0.3s'}}>
-              <h2 className="text-2xl font-bold mb-4">Envoyez-moi un message</h2>
-              <p className="text-muted-foreground mb-6">
-                Que ce soit pour une opportunité professionnelle, une collaboration ou simplement pour échanger, 
-                je serai ravi de vous répondre rapidement.
+            <div className="glass-card rounded-3xl p-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              <h2 className="text-2xl font-bold mb-4 text-warm-700">Envoyez-moi un message</h2>
+              <p className="text-muted-foreground mb-6 text-sm">
+                Que ce soit pour une opportunité professionnelle, une collaboration ou simplement
+                pour échanger, je vous répondrai rapidement.
               </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col gap-3">
                 <a
                   href={`mailto:${contactInfo.email}`}
-                  className="ios-button flex-1 text-center"
+                  className="ios-button flex items-center justify-center gap-2"
                 >
-                  <Mail className="mr-2 h-5 w-5" />
+                  <Mail className="h-5 w-5" />
                   Envoyer un email
                 </a>
                 <a
-                  href={`tel:${contactInfo.phone.replace(/\s/g, '')}`}
-                  className="px-6 py-3 border-2 border-primary text-primary rounded-2xl font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 flex items-center justify-center"
+                  href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
+                  className="px-6 py-3 border-2 border-warm-500 text-warm-600 rounded-2xl font-semibold hover:bg-warm-50 transition-all duration-200 flex items-center justify-center gap-2"
                 >
-                  <Phone className="mr-2 h-5 w-5" />
+                  <Phone className="h-5 w-5" />
                   Appeler
                 </a>
               </div>
             </div>
+
+            <div className="glass-card rounded-3xl p-8 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+              <h2 className="text-xl font-bold mb-4 text-warm-700">Retrouvez-moi sur</h2>
+              <a
+                href="#"
+                className="flex items-center gap-4 p-4 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition-all duration-200 hover:scale-105"
+              >
+                <Linkedin className="h-7 w-7" />
+                <div>
+                  <p className="font-semibold">LinkedIn</p>
+                  <p className="text-sm text-blue-200">Mattéo Grech</p>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Call to action */}
+        {/* CTA final */}
         <div className="glass-card rounded-3xl p-8 mt-12 text-center animate-scale-in">
-          <h2 className="text-2xl font-bold mb-4">Prêt à collaborer ?</h2>
+          <h2 className="text-2xl font-bold mb-3 text-warm-700">Prêt à collaborer ?</h2>
           <p className="text-muted-foreground mb-6">
-            Je suis actuellement à la recherche d'une alternance en administration système et réseau. 
+            Je suis à la recherche d'une alternance en cybersécurité ou administration réseau/système.
             Si mon profil vous intéresse, contactez-moi !
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={`mailto:${contactInfo.email}?subject=Opportunité d'alternance`}
-              className="ios-button"
-            >
-              Proposer une alternance
-            </a>
-            <button className="px-6 py-3 border-2 border-primary text-primary rounded-2xl font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200">
-              Télécharger mon CV
-            </button>
-          </div>
+          <a
+            href={`mailto:${contactInfo.email}?subject=Opportunité d'alternance – Mattéo Grech`}
+            className="ios-button inline-flex items-center gap-2"
+          >
+            <Mail className="h-5 w-5" />
+            Proposer une alternance
+          </a>
         </div>
       </div>
     </div>
