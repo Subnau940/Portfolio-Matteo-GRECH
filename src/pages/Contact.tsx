@@ -1,11 +1,10 @@
 import { Mail, Phone, MapPin, Linkedin } from "lucide-react"
 
 const Contact = () => {
-  const contactInfo = {
-    email: "matteo1grech@gmail.com",
-    phone: "06 34 04 28 46",
-    ville: "Montpellier 34000",
-  }
+  const email = "matteo1grech@gmail.com"
+  const phone = "06 34 04 28 46"
+
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-warm-50 via-white to-warm-100 py-12">
@@ -25,26 +24,26 @@ const Contact = () => {
             <div className="glass-card rounded-3xl p-8 animate-fade-in">
               <h2 className="text-2xl font-bold mb-6 text-warm-700">Mes coordonnées</h2>
               <div className="space-y-5">
-                <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-4 group">
+                <a href={gmailUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
                   <div className="w-12 h-12 bg-gradient-to-br from-warm-400 to-warm-600 rounded-2xl flex items-center justify-center flex-shrink-0">
                     <Mail className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-sm text-muted-foreground mb-0.5">Email</h3>
                     <span className="text-warm-600 group-hover:text-warm-800 transition-colors font-medium">
-                      {contactInfo.email}
+                      {email}
                     </span>
                   </div>
                 </a>
 
-                <a href={`tel:${contactInfo.phone.replace(/\s/g, "")}`} className="flex items-center gap-4 group">
+                <a href={`tel:${phone.replace(/\s/g, "")}`} className="flex items-center gap-4 group">
                   <div className="w-12 h-12 bg-gradient-to-br from-warm-400 to-warm-600 rounded-2xl flex items-center justify-center flex-shrink-0">
                     <Phone className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-sm text-muted-foreground mb-0.5">Téléphone</h3>
                     <span className="text-warm-600 group-hover:text-warm-800 transition-colors font-medium">
-                      {contactInfo.phone}
+                      {phone}
                     </span>
                   </div>
                 </a>
@@ -55,7 +54,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-sm text-muted-foreground mb-0.5">Localisation</h3>
-                    <span className="font-medium">{contactInfo.ville}</span>
+                    <span className="font-medium">Montpellier 34000</span>
                   </div>
                 </div>
               </div>
@@ -91,14 +90,16 @@ const Contact = () => {
               </p>
               <div className="flex flex-col gap-3">
                 <a
-                  href={`mailto:${contactInfo.email}`}
+                  href={gmailUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="ios-button flex items-center justify-center gap-2"
                 >
                   <Mail className="h-5 w-5" />
                   Envoyer un email
                 </a>
                 <a
-                  href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
+                  href={`tel:${phone.replace(/\s/g, "")}`}
                   className="px-6 py-3 border-2 border-warm-500 text-warm-600 rounded-2xl font-semibold hover:bg-warm-50 transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   <Phone className="h-5 w-5" />
@@ -107,13 +108,16 @@ const Contact = () => {
               </div>
             </div>
 
+            {/* LinkedIn */}
             <div className="glass-card rounded-3xl p-8 animate-fade-in" style={{ animationDelay: "0.3s" }}>
               <h2 className="text-xl font-bold mb-4 text-warm-700">Retrouvez-moi sur</h2>
               <a
-                href="#"
-                className="flex items-center gap-4 p-4 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition-all duration-200 hover:scale-105"
+                href="https://www.linkedin.com/in/matteo-grech-369b06268/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-4 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition-all duration-200 hover:scale-105 hover:shadow-lg"
               >
-                <Linkedin className="h-7 w-7" />
+                <Linkedin className="h-7 w-7 flex-shrink-0" />
                 <div>
                   <p className="font-semibold">LinkedIn</p>
                   <p className="text-sm text-blue-200">Mattéo Grech</p>
@@ -131,7 +135,9 @@ const Contact = () => {
             Si mon profil vous intéresse, contactez-moi !
           </p>
           <a
-            href={`mailto:${contactInfo.email}?subject=Opportunité d'alternance – Mattéo Grech`}
+            href={gmailUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="ios-button inline-flex items-center gap-2"
           >
             <Mail className="h-5 w-5" />
