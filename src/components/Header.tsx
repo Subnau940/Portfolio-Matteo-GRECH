@@ -4,10 +4,10 @@ import { Menu, X } from "lucide-react"
 
 const navItems = [
   { title: "À Propos de Moi", url: "/apropos" },
-  { title: "Diplômes", url: "/diplomes" },
   { title: "Expériences", url: "/experiences" },
   { title: "Projets", url: "/projets" },
   { title: "Tableau de synthèse E5", url: "/tableau-e5" },
+  { title: "Veille technologique", url: "/veille" },
   { title: "Contact", url: "/contact" },
 ]
 
@@ -28,13 +28,13 @@ export function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden xl:flex items-center gap-1">
           {navItems.map((item) => (
             <NavLink
               key={item.url}
               to={item.url}
               className={({ isActive }) =>
-                `px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                `px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                   isActive
                     ? "bg-warm-100 text-warm-700 font-semibold"
                     : "text-muted-foreground hover:text-foreground hover:bg-gray-100"
@@ -57,7 +57,7 @@ export function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className="lg:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors"
+            className="xl:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menu"
           >
@@ -68,7 +68,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="lg:hidden border-t border-warm-200 bg-white/95 backdrop-blur-md">
+        <div className="xl:hidden border-t border-warm-200 bg-white/95 backdrop-blur-md">
           <nav className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
             {navItems.map((item) => (
               <NavLink
