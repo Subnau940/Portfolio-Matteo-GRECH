@@ -56,7 +56,9 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-medium;
+    @apply text-foreground font-medium;
+    background: linear-gradient(135deg, #fef7ed 0%, #ffffff 60%, #fef7ed 100%);
+    min-height: 100vh;
   }
 
   /* Custom scrollbar */
