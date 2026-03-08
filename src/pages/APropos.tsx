@@ -77,7 +77,7 @@ const APropos = () => {
     {
       titre: "Introduction à la Cybersécurité",
       organisme: "Cisco Networking Academy",
-      logo: "https://images.credly.com/badges/0fd07c77-dd32-4272-b926-6d0701af5bfb/image.png",
+      logo: "/cisco.logo.png",
       logoFallback: "🔐",
       link: "https://www.credly.com/badges/0fd07c77-dd32-4272-b926-6d0701af5bfb/linked_in_profile",
       download: null,
@@ -264,8 +264,14 @@ const APropos = () => {
                       alt={cert.organisme}
                       className="h-16 w-16 object-contain mb-3 rounded-xl"
                       onError={(e) => {
-                        e.currentTarget.style.display = "none"
-                        const span = e.currentTarget.nextElementSibling as HTMLElement
+                        const img = e.currentTarget
+                        // For Cisco: try Credly CDN as fallback before emoji
+                        if (img.src.includes("cisco.logo.png")) {
+                          img.src = "https://images.credly.com/badges/0fd07c77-dd32-4272-b926-6d0701af5bfb/image.png"
+                          return
+                        }
+                        img.style.display = "none"
+                        const span = img.nextElementSibling as HTMLElement
                         if (span) span.style.display = "block"
                       }}
                     />

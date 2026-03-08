@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Header } from "@/components/Header";
+import { NetworkBackground } from "@/components/NetworkBackground";
 import { useEffect } from "react";
 import Accueil from "./pages/Accueil";
 import Projets from "./pages/Projets";
@@ -31,9 +32,10 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col w-full bg-gradient-to-br from-warm-50 to-white">
+        <div className="min-h-screen flex flex-col w-full bg-gradient-to-br from-warm-50 to-white relative">
+          <NetworkBackground />
           <Header />
-          <main className="flex-1">
+          <main className="flex-1 relative z-10">
             <Routes>
               <Route path="/" element={<Accueil />} />
               <Route path="/apropos" element={<APropos />} />
