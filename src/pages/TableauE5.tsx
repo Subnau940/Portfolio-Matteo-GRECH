@@ -2,7 +2,7 @@ import { FileText, Upload } from "lucide-react"
 
 const TableauE5 = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-warm-50 via-white to-warm-100 py-12">
+    <div className="min-h-screen py-12">
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-warm-500 to-warm-700 bg-clip-text text-transparent">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const Accueil = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-warm-50 via-white to-warm-100">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="px-6 py-24">
         <div className="max-w-4xl mx-auto text-center">

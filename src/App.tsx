@@ -32,7 +32,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col w-full bg-gradient-to-br from-warm-50 to-white relative">
+        <div className="min-h-screen flex flex-col w-full relative">
           <NetworkBackground />
           <Header />
           <main className="flex-1 relative z-10">
