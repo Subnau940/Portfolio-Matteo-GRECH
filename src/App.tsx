@@ -8,9 +8,9 @@ import { useEffect } from "react";
 import Accueil from "./pages/Accueil";
 import Projets from "./pages/Projets";
 import APropos from "./pages/APropos";
-import Diplomes from "./pages/Diplomes";
 import Experiences from "./pages/Experiences";
 import TableauE5 from "./pages/TableauE5";
+import Veille from "./pages/Veille";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -37,10 +37,10 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Accueil />} />
               <Route path="/apropos" element={<APropos />} />
-              <Route path="/diplomes" element={<Diplomes />} />
               <Route path="/experiences" element={<Experiences />} />
               <Route path="/projets" element={<Projets />} />
               <Route path="/tableau-e5" element={<TableauE5 />} />
+              <Route path="/veille" element={<Veille />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
