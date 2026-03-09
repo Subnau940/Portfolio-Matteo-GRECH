@@ -1,4 +1,4 @@
-import { GraduationCap, Award, Calendar, MapPin, CheckCircle } from "lucide-react"
+import { GraduationCap, Award, Calendar, MapPin, CheckCircle, ExternalLink } from "lucide-react"
 
 const Diplomes = () => {
   const parcours = [
@@ -37,18 +37,32 @@ const Diplomes = () => {
       organisme: "ANSSI",
       description: "Formation nationale en cybersécurité délivrée par l'Agence Nationale de la Sécurité des Systèmes d'Information.",
       icon: "🛡️",
+      image: null,
+      link: null,
     },
     {
       titre: "Introduction à la Cybersécurité",
       organisme: "Cisco",
       description: "Certification officielle Cisco couvrant les fondamentaux de la cybersécurité et la protection des réseaux.",
       icon: "🔐",
+      image: null,
+      link: null,
     },
     {
       titre: "Bac Pro SN",
       organisme: "Éducation Nationale",
       description: "Baccalauréat Professionnel Système et Numérique – Mention Bien.",
       icon: "🎓",
+      image: null,
+      link: null,
+    },
+    {
+      titre: "Networking Basics",
+      organisme: "Cisco Networking Academy",
+      description: "Certification Cisco couvrant les bases des réseaux informatiques : modèles OSI/TCP-IP, adressage IP, protocoles et équipements réseau.",
+      icon: null,
+      image: "/cisco-networking-basics.png",
+      link: "https://www.credly.com/badges/cc048eb5-4475-4088-ab6d-519bd37ff1f3/public_url",
     },
   ]
 
@@ -124,17 +138,38 @@ const Diplomes = () => {
             Certifications
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {certifications.map((cert, index) => (
               <div
                 key={index}
-                className="glass-card rounded-3xl p-6 card-hover animate-scale-in"
+                className="glass-card rounded-3xl p-6 card-hover animate-scale-in flex flex-col"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="text-4xl mb-4">{cert.icon}</div>
+                {cert.image ? (
+                  <div className="flex justify-center mb-4">
+                    <img
+                      src={cert.image}
+                      alt={cert.titre}
+                      className="w-24 h-24 object-contain rounded-xl"
+                    />
+                  </div>
+                ) : (
+                  <div className="text-4xl mb-4">{cert.icon}</div>
+                )}
                 <h3 className="font-bold text-warm-700 mb-1">{cert.titre}</h3>
                 <p className="text-sm font-medium text-primary mb-3">{cert.organisme}</p>
-                <p className="text-sm text-muted-foreground">{cert.description}</p>
+                <p className="text-sm text-muted-foreground flex-1">{cert.description}</p>
+                {cert.link && (
+                  <a
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 flex items-center gap-1.5 text-sm text-warm-600 hover:text-warm-800 font-medium transition-colors duration-200"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    Voir le badge
+                  </a>
+                )}
               </div>
             ))}
           </div>
