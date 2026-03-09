@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import { Mail, Phone, MapPin, Shield, Network, Monitor, Dumbbell, Bike, Telescope, BookOpen, GraduationCap, Award, Calendar, CheckCircle, Download, FileText, User, Wrench, BookMarked, Menu, X } from "lucide-react"
 import { Link } from "react-router-dom"
 
@@ -19,24 +19,22 @@ const APropos = () => {
   const [diploFilter, setDiploFilter] = useState<DiploFilter>("all")
   const [activeSection, setActiveSection] = useState("section-profil")
   const [tocOpen, setTocOpen] = useState(false)
-  const observerRef = useRef<IntersectionObserver | null>(null)
 
   useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id)
-          }
-        })
-      },
-      { rootMargin: "-20% 0px -60% 0px", threshold: 0 }
-    )
-    sections.forEach(({ id }) => {
-      const el = document.getElementById(id)
-      if (el) observerRef.current?.observe(el)
-    })
-    return () => observerRef.current?.disconnect()
+    const OFFSET = 140 // header height + marge
+    const handleScroll = () => {
+      let current = sections[0].id
+      for (const { id } of sections) {
+        const el = document.getElementById(id)
+        if (el && el.getBoundingClientRect().top <= OFFSET) {
+          current = id
+        }
+      }
+      setActiveSection(current)
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const scrollTo = (id: string) => {
@@ -164,49 +162,62 @@ const APropos = () => {
   return (
     <div className="min-h-screen py-12">
       {/* ─── Sommaire flottant desktop ─── */}
-      <aside className="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-30 flex-col gap-1 bg-white/90 backdrop-blur-md border border-warm-200 shadow-lg rounded-2xl p-3">
-        {sections.map(({ id, label, icon: Icon }) => (
-          <button
-            key={id}
-            onClick={() => scrollTo(id)}
-            title={label}
-            className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 whitespace-nowrap ${
-              activeSection === id
-                ? "bg-gradient-to-r from-warm-500 to-warm-600 text-white shadow"
-                : "text-muted-foreground hover:text-warm-700 hover:bg-warm-50"
-            }`}
-          >
-            <Icon className="h-3.5 w-3.5 flex-shrink-0" />
-            <span>{label}</span>
-          </button>
-        ))}
+      <aside className="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-30 flex-col gap-0.5 bg-white/90 backdrop-blur-md border border-warm-200 shadow-lg rounded-2xl p-2.5">
+        {sections.map(({ id, label, icon: Icon }) => {
+          const isActive = activeSection === id
+          return (
+            <button
+              key={id}
+              onClick={() => scrollTo(id)}
+              title={label}
+              className={`group relative flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium whitespace-nowrap
+                transition-all duration-200 ease-out active:scale-95 overflow-hidden
+                ${isActive
+                  ? "bg-gradient-to-r from-warm-500 to-warm-600 text-white shadow-md"
+                  : "text-muted-foreground hover:text-warm-700 hover:bg-warm-50 hover:translate-x-0.5"
+                }`}
+            >
+              <Icon className={`h-3.5 w-3.5 flex-shrink-0 transition-transform duration-200 ${isActive ? "scale-110" : "group-hover:scale-110"}`} />
+              <span className="transition-all duration-200">{label}</span>
+              {isActive && (
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-4 bg-white/40 rounded-r-full" />
+              )}
+            </button>
+          )
+        })}
       </aside>
 
       {/* ─── Sommaire mobile (bouton flottant) ─── */}
       <div className="xl:hidden fixed bottom-6 right-6 z-40">
         <button
           onClick={() => setTocOpen(!tocOpen)}
-          className="w-12 h-12 bg-gradient-to-br from-warm-500 to-warm-600 text-white rounded-2xl shadow-lg flex items-center justify-center transition-transform duration-200 hover:scale-110"
+          className="w-12 h-12 bg-gradient-to-br from-warm-500 to-warm-600 text-white rounded-2xl shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-200 ease-out"
           aria-label="Sommaire"
         >
-          {tocOpen ? <X className="h-5 w-5" /> : <BookMarked className="h-5 w-5" />}
+          <span className={`transition-all duration-200 ${tocOpen ? "rotate-90 scale-90" : "rotate-0 scale-100"}`}>
+            {tocOpen ? <X className="h-5 w-5" /> : <BookMarked className="h-5 w-5" />}
+          </span>
         </button>
         {tocOpen && (
-          <div className="absolute bottom-16 right-0 bg-white/95 backdrop-blur-md border border-warm-200 shadow-xl rounded-2xl p-3 w-52 flex flex-col gap-1 animate-fade-in">
-            {sections.map(({ id, label, icon: Icon }) => (
-              <button
-                key={id}
-                onClick={() => scrollTo(id)}
-                className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 text-left ${
-                  activeSection === id
-                    ? "bg-gradient-to-r from-warm-500 to-warm-600 text-white"
-                    : "text-muted-foreground hover:text-warm-700 hover:bg-warm-50"
-                }`}
-              >
-                <Icon className="h-4 w-4 flex-shrink-0" />
-                {label}
-              </button>
-            ))}
+          <div className="absolute bottom-16 right-0 bg-white/95 backdrop-blur-md border border-warm-200 shadow-xl rounded-2xl p-2.5 w-52 flex flex-col gap-0.5 animate-slide-in-right">
+            {sections.map(({ id, label, icon: Icon }, idx) => {
+              const isActive = activeSection === id
+              return (
+                <button
+                  key={id}
+                  onClick={() => scrollTo(id)}
+                  style={{ animationDelay: `${idx * 0.03}s` }}
+                  className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ease-out active:scale-95 text-left
+                    ${isActive
+                      ? "bg-gradient-to-r from-warm-500 to-warm-600 text-white shadow"
+                      : "text-muted-foreground hover:text-warm-700 hover:bg-warm-50 hover:pl-4"
+                    }`}
+                >
+                  <Icon className="h-4 w-4 flex-shrink-0" />
+                  {label}
+                </button>
+              )
+            })}
           </div>
         )}
       </div>
