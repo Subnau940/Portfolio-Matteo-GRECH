@@ -122,6 +122,22 @@ const Projets = () => {
       demo: ["/zabbix.png", "/zabbix2.png"],
     },
     {
+      title: "Blog de classe BTS SIO SISR – Site vitrine de la promotion",
+      description: "Dans le cadre de notre formation en BTS Services Informatiques aux Organisations option SISR, j'ai participé à la réalisation d'un blog de classe présentant la formation, les étudiants et les activités réalisées durant l'année. Le projet a été mené en équipe selon une méthode agile, avec Trello pour répartir les tâches et suivre l'avancement. Une attention particulière a été portée au respect du RGPD : les photos des étudiants ont été publiées uniquement après recueil de leur consentement, garantissant ainsi la protection des données personnelles.",
+      technologies: ["Développement web", "Méthode Agile", "Trello", "RGPD", "Travail d'équipe", "BTS SIO SISR"],
+      date: "2024 – 2025",
+      image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&auto=format&fit=crop&q=60",
+      competences: [
+        "Développement et mise en ligne d'un site web",
+        "Organisation en méthode agile (Trello)",
+        "Respect du RGPD et gestion du consentement",
+        "Travail collaboratif en équipe",
+        "Présentation de la formation et des activités"
+      ],
+      github: "#",
+      demo: "https://esicad-sio1-blog-hub.lovable.app/bts-sio1",
+    },
+    {
       title: "Création et gestion de documentation interne",
       description: "Conception, structuration et maintenance d'une documentation technique destinée à deux publics : l'équipe support (hotline) et les magasins (PDV). Pour l'équipe support, la documentation est intégrée dans ServiceNow sous forme de base de connaissances pour retrouver rapidement des procédures et solutions à des incidents récurrents. Pour les magasins, la documentation est publiée sur Univers, une plateforme dédiée avec des guides simplifiés et tutoriels vidéo permettant une résolution autonome des problèmes.",
       technologies: ["ServiceNow", "Base de connaissances", "Documentation technique", "Tutoriels vidéo", "Univers"],
@@ -232,10 +248,22 @@ const Projets = () => {
                       <Github className="h-4 w-4" />
                       Code
                     </a>
-                    {projet.demo !== "#" && (
+                    {/* Demo : URL externe → lien, tableau d'images → bouton toggle */}
+                    {projet.demo !== "#" && typeof projet.demo === "string" && (
+                      <a
+                        href={projet.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-2xl hover:bg-primary/90 transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                        Voir le site
+                      </a>
+                    )}
+                    {Array.isArray(projet.demo) && (
                       <button
                         onClick={() => toggleDemo(index)}
-                        className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-2xl hover:bg-primary/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                        className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-2xl hover:bg-primary/90 transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95"
                       >
                         <ExternalLink className="h-4 w-4" />
                         Demo
@@ -243,7 +271,7 @@ const Projets = () => {
                     )}
                   </div>
 
-                  {showDemo[index] && projet.demo !== "#" && (
+                  {showDemo[index] && Array.isArray(projet.demo) && (
                     <div className="mt-4 space-y-2">
                       {projet.demo.map((imgSrc, i) => (
                         <img

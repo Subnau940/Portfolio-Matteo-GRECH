@@ -15,14 +15,21 @@ const sections = [
 ]
 
 const APropos = () => {
-  const [showCV, setShowCV] = useState(false)
+  const [showCV, setShowCV] = useState(true)
   const [diploFilter, setDiploFilter] = useState<DiploFilter>("all")
   const [activeSection, setActiveSection] = useState("section-profil")
   const [tocOpen, setTocOpen] = useState(false)
 
   useEffect(() => {
-    const OFFSET = 140 // header height + marge
+    const OFFSET = 160
     const handleScroll = () => {
+      // Si on est tout en bas de la page → activer la dernière section
+      const atBottom =
+        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 20
+      if (atBottom) {
+        setActiveSection(sections[sections.length - 1].id)
+        return
+      }
       let current = sections[0].id
       for (const { id } of sections) {
         const el = document.getElementById(id)
@@ -39,10 +46,10 @@ const APropos = () => {
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id)
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" })
-      setTocOpen(false)
-    }
+    if (!el) return
+    const top = el.getBoundingClientRect().top + window.scrollY - 110
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" })
+    setTocOpen(false)
   }
 
   const softSkills = [
@@ -162,7 +169,7 @@ const APropos = () => {
   return (
     <div className="min-h-screen py-12">
       {/* ─── Sommaire flottant desktop ─── */}
-      <aside className="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-30 flex-col gap-0.5 bg-white/90 backdrop-blur-md border border-warm-200 shadow-lg rounded-2xl p-2.5">
+      <aside className="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-30 flex-col gap-0.5 bg-white/90 backdrop-blur-md border border-warm-200 shadow-lg rounded-2xl p-2.5 max-h-[calc(100vh-6rem)] overflow-y-auto">
         {sections.map(({ id, label, icon: Icon }) => {
           const isActive = activeSection === id
           return (
@@ -452,7 +459,7 @@ const APropos = () => {
                 onClick={() => setShowCV(!showCV)}
                 className="px-4 py-2 border-2 border-warm-400 text-warm-600 rounded-xl font-medium text-sm hover:bg-warm-50 transition-all duration-200"
               >
-                {showCV ? "Masquer" : "Aperçu"}
+                {showCV ? "Masquer l'aperçu" : "Afficher l'aperçu"}
               </button>
               <a
                 href="/CV-GRECH-Matteo.pdf"
@@ -477,8 +484,8 @@ const APropos = () => {
           )}
 
           {!showCV && (
-            <p className="text-sm text-muted-foreground">
-              Cliquez sur <strong>Aperçu</strong> pour visualiser le CV directement sur la page, ou <strong>Télécharger</strong> pour l'enregistrer.
+            <p className="text-sm text-muted-foreground animate-fade-in">
+              Cliquez sur <strong>Afficher l'aperçu</strong> pour visualiser le CV directement, ou <strong>Télécharger</strong> pour l'enregistrer.
             </p>
           )}
         </div>
