@@ -1,12 +1,51 @@
-import React, { useState } from "react"
-import { Mail, Phone, MapPin, Shield, Network, Monitor, Dumbbell, Bike, Telescope, BookOpen, GraduationCap, Award, Calendar, CheckCircle, Download, FileText } from "lucide-react"
+import React, { useState, useEffect, useRef } from "react"
+import { Mail, Phone, MapPin, Shield, Network, Monitor, Dumbbell, Bike, Telescope, BookOpen, GraduationCap, Award, Calendar, CheckCircle, Download, FileText, User, Wrench, BookMarked, Menu, X } from "lucide-react"
 import { Link } from "react-router-dom"
 
 type DiploFilter = "all" | "diplomes" | "certifications"
 
+const sections = [
+  { id: "section-profil",        label: "Profil",         icon: User },
+  { id: "section-softskills",    label: "Soft Skills",    icon: BookOpen },
+  { id: "section-interets",      label: "Intérêts",       icon: Telescope },
+  { id: "section-competences",   label: "Compétences",    icon: Wrench },
+  { id: "section-formation",     label: "Formation",      icon: GraduationCap },
+  { id: "section-certifications",label: "Certifications", icon: Award },
+  { id: "section-cv",            label: "Mon CV",         icon: FileText },
+]
+
 const APropos = () => {
   const [showCV, setShowCV] = useState(false)
   const [diploFilter, setDiploFilter] = useState<DiploFilter>("all")
+  const [activeSection, setActiveSection] = useState("section-profil")
+  const [tocOpen, setTocOpen] = useState(false)
+  const observerRef = useRef<IntersectionObserver | null>(null)
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: "-20% 0px -60% 0px", threshold: 0 }
+    )
+    sections.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) observerRef.current?.observe(el)
+    })
+    return () => observerRef.current?.disconnect()
+  }, [])
+
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" })
+      setTocOpen(false)
+    }
+  }
 
   const softSkills = [
     { label: "Assidu", emoji: "📌" },
@@ -71,6 +110,7 @@ const APropos = () => {
     {
       titre: "MOOC SecNumAcadémie",
       organisme: "ANSSI",
+      type: "certification" as const,
       logo: "/anssi-logo.png",
       logoFallback: "🛡️",
       link: null,
@@ -80,6 +120,7 @@ const APropos = () => {
     {
       titre: "Introduction à la Cybersécurité",
       organisme: "Cisco Networking Academy",
+      type: "certification" as const,
       logo: "/cisco.logo.png",
       logoFallback: "🔐",
       link: "https://www.credly.com/badges/0fd07c77-dd32-4272-b926-6d0701af5bfb/linked_in_profile",
@@ -87,24 +128,32 @@ const APropos = () => {
       downloadLabel: null,
     },
     {
-      titre: "Bac Pro Système et Numérique",
-      organisme: "Éducation Nationale – Mention Bien",
-      logo: null,
-      logoFallback: "🎓",
-      link: null,
-      download: null,
-      downloadLabel: null,
-    },
-    {
       titre: "Networking Basics",
       organisme: "Cisco Networking Academy",
+      type: "certification" as const,
       logo: "/cisco-networking-basics.png",
       logoFallback: "🌐",
       link: "https://www.credly.com/badges/cc048eb5-4475-4088-ab6d-519bd37ff1f3/public_url",
       download: null,
       downloadLabel: null,
     },
+    {
+      titre: "Bac Pro Système et Numérique",
+      organisme: "Éducation Nationale – Mention Bien",
+      type: "diplome" as const,
+      logo: null,
+      logoFallback: "🎓",
+      link: null,
+      download: null,
+      downloadLabel: null,
+    },
   ]
+
+  const filteredCerts = certifications.filter((c) => {
+    if (diploFilter === "all") return true
+    if (diploFilter === "certifications") return c.type === "certification"
+    return c.type === "diplome"
+  })
 
   const statutColor = (statut: string) => {
     if (statut === "Obtenu") return "bg-green-100 text-green-700"
@@ -114,6 +163,54 @@ const APropos = () => {
 
   return (
     <div className="min-h-screen py-12">
+      {/* ─── Sommaire flottant desktop ─── */}
+      <aside className="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-30 flex-col gap-1 bg-white/90 backdrop-blur-md border border-warm-200 shadow-lg rounded-2xl p-3">
+        {sections.map(({ id, label, icon: Icon }) => (
+          <button
+            key={id}
+            onClick={() => scrollTo(id)}
+            title={label}
+            className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 whitespace-nowrap ${
+              activeSection === id
+                ? "bg-gradient-to-r from-warm-500 to-warm-600 text-white shadow"
+                : "text-muted-foreground hover:text-warm-700 hover:bg-warm-50"
+            }`}
+          >
+            <Icon className="h-3.5 w-3.5 flex-shrink-0" />
+            <span>{label}</span>
+          </button>
+        ))}
+      </aside>
+
+      {/* ─── Sommaire mobile (bouton flottant) ─── */}
+      <div className="xl:hidden fixed bottom-6 right-6 z-40">
+        <button
+          onClick={() => setTocOpen(!tocOpen)}
+          className="w-12 h-12 bg-gradient-to-br from-warm-500 to-warm-600 text-white rounded-2xl shadow-lg flex items-center justify-center transition-transform duration-200 hover:scale-110"
+          aria-label="Sommaire"
+        >
+          {tocOpen ? <X className="h-5 w-5" /> : <BookMarked className="h-5 w-5" />}
+        </button>
+        {tocOpen && (
+          <div className="absolute bottom-16 right-0 bg-white/95 backdrop-blur-md border border-warm-200 shadow-xl rounded-2xl p-3 w-52 flex flex-col gap-1 animate-fade-in">
+            {sections.map(({ id, label, icon: Icon }) => (
+              <button
+                key={id}
+                onClick={() => scrollTo(id)}
+                className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 text-left ${
+                  activeSection === id
+                    ? "bg-gradient-to-r from-warm-500 to-warm-600 text-white"
+                    : "text-muted-foreground hover:text-warm-700 hover:bg-warm-50"
+                }`}
+              >
+                <Icon className="h-4 w-4 flex-shrink-0" />
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-warm-500 to-warm-700 bg-clip-text text-transparent">
@@ -123,20 +220,20 @@ const APropos = () => {
         </div>
 
         {/* Identité + Contact */}
-        <div className="glass-card rounded-3xl p-8 mb-8 animate-scale-in group">
+        <div id="section-profil" className="glass-card rounded-3xl p-8 mb-8 animate-scale-in group scroll-mt-24">
           <div className="grid md:grid-cols-3 gap-8 items-center">
             <div className="text-center">
               <div className="w-32 h-32 bg-gradient-to-br from-warm-400 to-warm-600 rounded-3xl mx-auto mb-4 flex items-center justify-center text-white text-4xl font-bold transition-transform duration-300 group-hover:scale-105">
                 MG
               </div>
               <h2 className="text-xl font-bold text-warm-700">Mattéo Grech</h2>
-              <p className="text-muted-foreground text-sm mt-1">En recherche d'alternance</p>
+              <p className="text-muted-foreground text-sm mt-1">En recherche d'alternance pour la rentrée 2026</p>
             </div>
 
             <div className="md:col-span-2">
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
                 Passionné par la cybersécurité et son évolution, je relève chaque défi avec curiosité et détermination.
-                En recherche d'alternance.
+                En recherche d'alternance pour la rentrée 2026.
               </p>
               <div className="space-y-3">
                 <a href="tel:0634042846" className="flex items-center gap-3 text-muted-foreground hover:text-warm-700 transition-colors group/item">
@@ -163,7 +260,7 @@ const APropos = () => {
         </div>
 
         {/* Soft skills */}
-        <div className="glass-card rounded-3xl p-8 mb-8 animate-fade-in">
+        <div id="section-softskills" className="glass-card rounded-3xl p-8 mb-8 animate-fade-in scroll-mt-24">
           <h2 className="text-2xl font-bold mb-6 text-warm-700">Soft skills</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {softSkills.map((s, i) => (
@@ -176,7 +273,7 @@ const APropos = () => {
         </div>
 
         {/* Centres d'intérêt */}
-        <div className="glass-card rounded-3xl p-8 mb-8 animate-fade-in">
+        <div id="section-interets" className="glass-card rounded-3xl p-8 mb-8 animate-fade-in scroll-mt-24">
           <h2 className="text-2xl font-bold mb-6 text-warm-700">Centres d'intérêt</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {interets.map((interet, i) => (
@@ -191,7 +288,7 @@ const APropos = () => {
         </div>
 
         {/* Compétences techniques */}
-        <div className="mb-8">
+        <div id="section-competences" className="mb-8 scroll-mt-24">
           <h2 className="text-2xl font-bold mb-6 text-warm-700">Compétences techniques</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {competences.map((cat, i) => (
@@ -215,30 +312,8 @@ const APropos = () => {
           </div>
         </div>
 
-        {/* Filtres Diplômes / Certifications */}
-        <div className="flex flex-wrap gap-2 mb-6 justify-center">
-          {([
-            { label: "Tout", value: "all" as DiploFilter },
-            { label: "Diplômes", value: "diplomes" as DiploFilter },
-            { label: "Certifications", value: "certifications" as DiploFilter },
-          ]).map((f) => (
-            <button
-              key={f.value}
-              onClick={() => setDiploFilter(f.value)}
-              className={`px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-105 ${
-                diploFilter === f.value
-                  ? "bg-gradient-to-r from-warm-500 to-warm-600 text-white shadow-lg"
-                  : "bg-white border border-warm-200 text-muted-foreground hover:border-warm-400 hover:text-warm-700"
-              }`}
-            >
-              {f.label}
-            </button>
-          ))}
-        </div>
-
         {/* Parcours scolaire */}
-        {(diploFilter === "all" || diploFilter === "diplomes") && (
-        <div className="glass-card rounded-3xl p-8 mb-8 animate-fade-in">
+        <div id="section-formation" className="glass-card rounded-3xl p-8 mb-8 animate-fade-in scroll-mt-24">
           <h2 className="text-2xl font-bold mb-8 text-warm-700 flex items-center gap-3">
             <GraduationCap className="h-6 w-6" />
             Parcours scolaire
@@ -270,17 +345,37 @@ const APropos = () => {
             </div>
           </div>
         </div>
-        )}
 
-        {/* Diplômes / Certifications */}
-        {(diploFilter === "all" || diploFilter === "certifications") && (
-        <div className="glass-card rounded-3xl p-8 mb-8 animate-scale-in">
-          <h2 className="text-2xl font-bold mb-6 text-warm-700 flex items-center gap-3">
-            <Award className="h-6 w-6" />
-            Certifications
-          </h2>
+        {/* Certifications / Diplômes */}
+        <div id="section-certifications" className="glass-card rounded-3xl p-8 mb-8 animate-scale-in scroll-mt-24">
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+            <h2 className="text-2xl font-bold text-warm-700 flex items-center gap-3">
+              <Award className="h-6 w-6" />
+              Certifications &amp; Diplômes
+            </h2>
+            {/* Filtres */}
+            <div className="flex gap-2 flex-wrap">
+              {([
+                { label: "Tout", value: "all" as DiploFilter },
+                { label: "Certifications", value: "certifications" as DiploFilter },
+                { label: "Diplômes", value: "diplomes" as DiploFilter },
+              ]).map((f) => (
+                <button
+                  key={f.value}
+                  onClick={() => setDiploFilter(f.value)}
+                  className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 hover:scale-105 ${
+                    diploFilter === f.value
+                      ? "bg-gradient-to-r from-warm-500 to-warm-600 text-white shadow"
+                      : "bg-warm-50 border border-warm-200 text-muted-foreground hover:border-warm-400 hover:text-warm-700"
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {certifications.map((cert, i) => {
+            {filteredCerts.map((cert, i) => {
               const CardWrapper = cert.link
                 ? ({ children }: { children: React.ReactNode }) => (
                     <a href={cert.link!} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-5 bg-warm-50 rounded-2xl border border-warm-100 hover:border-warm-300 transition-all duration-200 hover:scale-105 text-center cursor-pointer">
@@ -301,7 +396,6 @@ const APropos = () => {
                       className="h-16 w-16 object-contain mb-3 rounded-xl"
                       onError={(e) => {
                         const img = e.currentTarget
-                        // For Cisco: try Credly CDN as fallback before emoji
                         if (img.src.includes("cisco.logo.png")) {
                           img.src = "https://images.credly.com/badges/0fd07c77-dd32-4272-b926-6d0701af5bfb/image.png"
                           return
@@ -334,10 +428,9 @@ const APropos = () => {
             })}
           </div>
         </div>
-        )}
 
         {/* CV Section */}
-        <div className="glass-card rounded-3xl p-8 mb-8 animate-fade-in">
+        <div id="section-cv" className="glass-card rounded-3xl p-8 mb-8 animate-fade-in scroll-mt-24">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-warm-700 flex items-center gap-3">
               <FileText className="h-6 w-6" />
@@ -381,7 +474,7 @@ const APropos = () => {
 
         {/* CTA */}
         <div className="glass-card rounded-3xl p-8 text-center animate-scale-in">
-          <h2 className="text-2xl font-bold mb-3 text-warm-700">En recherche d'alternance</h2>
+          <h2 className="text-2xl font-bold mb-3 text-warm-700">En recherche d'alternance pour la rentrée 2026</h2>
           <p className="text-muted-foreground mb-6">
             Disponible pour une alternance en administration système, réseau ou cybersécurité.
           </p>
