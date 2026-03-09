@@ -2,8 +2,11 @@ import React, { useState } from "react"
 import { Mail, Phone, MapPin, Shield, Network, Monitor, Dumbbell, Bike, Telescope, BookOpen, GraduationCap, Award, Calendar, CheckCircle, Download, FileText } from "lucide-react"
 import { Link } from "react-router-dom"
 
+type DiploFilter = "all" | "diplomes" | "certifications"
+
 const APropos = () => {
   const [showCV, setShowCV] = useState(false)
+  const [diploFilter, setDiploFilter] = useState<DiploFilter>("all")
 
   const softSkills = [
     { label: "Assidu", emoji: "📌" },
@@ -89,6 +92,15 @@ const APropos = () => {
       logo: null,
       logoFallback: "🎓",
       link: null,
+      download: null,
+      downloadLabel: null,
+    },
+    {
+      titre: "Networking Basics",
+      organisme: "Cisco Networking Academy",
+      logo: "/cisco-networking-basics.png",
+      logoFallback: "🌐",
+      link: "https://www.credly.com/badges/cc048eb5-4475-4088-ab6d-519bd37ff1f3/public_url",
       download: null,
       downloadLabel: null,
     },
@@ -203,7 +215,29 @@ const APropos = () => {
           </div>
         </div>
 
+        {/* Filtres Diplômes / Certifications */}
+        <div className="flex flex-wrap gap-2 mb-6 justify-center">
+          {([
+            { label: "Tout", value: "all" as DiploFilter },
+            { label: "Diplômes", value: "diplomes" as DiploFilter },
+            { label: "Certifications", value: "certifications" as DiploFilter },
+          ]).map((f) => (
+            <button
+              key={f.value}
+              onClick={() => setDiploFilter(f.value)}
+              className={`px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-105 ${
+                diploFilter === f.value
+                  ? "bg-gradient-to-r from-warm-500 to-warm-600 text-white shadow-lg"
+                  : "bg-white border border-warm-200 text-muted-foreground hover:border-warm-400 hover:text-warm-700"
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+
         {/* Parcours scolaire */}
+        {(diploFilter === "all" || diploFilter === "diplomes") && (
         <div className="glass-card rounded-3xl p-8 mb-8 animate-fade-in">
           <h2 className="text-2xl font-bold mb-8 text-warm-700 flex items-center gap-3">
             <GraduationCap className="h-6 w-6" />
@@ -236,14 +270,16 @@ const APropos = () => {
             </div>
           </div>
         </div>
+        )}
 
         {/* Diplômes / Certifications */}
+        {(diploFilter === "all" || diploFilter === "certifications") && (
         <div className="glass-card rounded-3xl p-8 mb-8 animate-scale-in">
           <h2 className="text-2xl font-bold mb-6 text-warm-700 flex items-center gap-3">
             <Award className="h-6 w-6" />
-            Diplômes / Certifications
+            Certifications
           </h2>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {certifications.map((cert, i) => {
               const CardWrapper = cert.link
                 ? ({ children }: { children: React.ReactNode }) => (
@@ -298,6 +334,7 @@ const APropos = () => {
             })}
           </div>
         </div>
+        )}
 
         {/* CV Section */}
         <div className="glass-card rounded-3xl p-8 mb-8 animate-fade-in">
