@@ -1,17 +1,21 @@
-import { useCallback } from "react"
-import Particles from "@tsparticles/react"
+import { useEffect, useState } from "react"
+import Particles, { initParticlesEngine } from "@tsparticles/react"
 import { loadSlim } from "@tsparticles/slim"
-import type { Engine } from "@tsparticles/engine"
 
 export function NetworkBackground() {
-  const particlesInit = useCallback(async (engine: Engine) => {
-    await loadSlim(engine)
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine)
+    }).then(() => setReady(true))
   }, [])
+
+  if (!ready) return null
 
   return (
     <Particles
       id="tsparticles"
-      init={particlesInit}
       style={{
         position: "fixed",
         top: 0,
@@ -22,32 +26,21 @@ export function NetworkBackground() {
         pointerEvents: "none",
       }}
       options={{
-        background: {
-          color: {
-            value: "transparent",
-          },
-        },
+        background: { color: { value: "transparent" } },
         fpsLimit: 60,
         interactivity: {
           events: {
-            onHover: {
-              enable: true,
-              mode: "grab",
-            },
+            onHover: { enable: true, mode: "grab" },
           },
           modes: {
             grab: {
               distance: 140,
-              links: {
-                opacity: 0.5,
-              },
+              links: { opacity: 0.5 },
             },
           },
         },
         particles: {
-          color: {
-            value: "#ef7811",
-          },
+          color: { value: "#ef7811" },
           links: {
             color: "#ef7811",
             distance: 150,
@@ -58,29 +51,16 @@ export function NetworkBackground() {
           move: {
             direction: "none",
             enable: true,
-            outModes: {
-              default: "bounce",
-            },
-            random: false,
+            outModes: { default: "bounce" },
             speed: 0.6,
-            straight: false,
           },
           number: {
-            density: {
-              enable: true,
-              area: 800,
-            },
+            density: { enable: true, area: 800 },
             value: 55,
           },
-          opacity: {
-            value: 0.3,
-          },
-          shape: {
-            type: "circle",
-          },
-          size: {
-            value: { min: 1.2, max: 3 },
-          },
+          opacity: { value: 0.3 },
+          shape: { type: "circle" },
+          size: { value: { min: 1.2, max: 3 } },
         },
         detectRetina: true,
       }}
