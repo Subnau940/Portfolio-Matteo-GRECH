@@ -56,20 +56,6 @@ const Projets = () => {
       demo: "#"
     },
     {
-      title: "Supervision Zabbix d'un parc de machines",
-      description: "Déploiement complet de Zabbix pour superviser plusieurs machines Windows et Linux : installation du serveur, ajout des agents, configuration des hôtes, création de tableaux de bord et gestion des alertes.",
-      technologies: ["Zabbix", "Linux", "Windows", "Supervision", "Monitoring"],
-      date: "2025",
-      image: "https://images.unsplash.com/photo-1674027444485-cec3da58eef4?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      competences: [
-        "Déploiement de services réseau",
-        "Supervision d'infrastructure",
-        "Diagnostic et résolution d'incidents"
-      ],
-      github: "#",
-      demo: ["/zabbix.png", "/zabbix2.png"],
-    },
-    {
       title: "IDS/IPS avec Snort sur pfSense",
       description: "Installation de pfSense, configuration du package Snort, activation de l'IDS puis du mode IPS, mise en place des règles de détection pour protéger un réseau local contre les attaques.",
       technologies: ["pfSense", "Snort", "IDS", "IPS", "Sécurité réseau"],
@@ -131,6 +117,23 @@ const Projets = () => {
         "Configuration des triggers et alertes",
         "Création de dashboards personnalisés",
         "Tests de supervision et dépannage système"
+      ],
+      github: "#",
+      demo: ["/zabbix.png", "/zabbix2.png"],
+    },
+    {
+      title: "Création et gestion de documentation interne",
+      description: "Conception, structuration et maintenance d'une documentation technique destinée à deux publics : l'équipe support (hotline) et les magasins (PDV). Pour l'équipe support, la documentation est intégrée dans ServiceNow sous forme de base de connaissances pour retrouver rapidement des procédures et solutions à des incidents récurrents. Pour les magasins, la documentation est publiée sur Univers, une plateforme dédiée avec des guides simplifiés et tutoriels vidéo permettant une résolution autonome des problèmes.",
+      technologies: ["ServiceNow", "Base de connaissances", "Documentation technique", "Tutoriels vidéo", "Univers"],
+      date: "2024 – 2025",
+      image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&auto=format&fit=crop&q=60",
+      competences: [
+        "Création de procédures et guides techniques",
+        "Réalisation de tutoriels vidéo",
+        "Mise à jour et amélioration des contenus",
+        "Centralisation des connaissances",
+        "Amélioration de l'efficacité de la hotline",
+        "Autonomie des utilisateurs finaux"
       ],
       github: "#",
       demo: "#",
