@@ -241,8 +241,8 @@ const APropos = () => {
         <div id="section-profil" className="glass-card rounded-3xl p-8 mb-8 animate-scale-in group scroll-mt-24">
           <div className="grid md:grid-cols-3 gap-8 items-center">
             <div className="text-center">
-              <div className="w-32 h-32 bg-gradient-to-br from-warm-400 to-warm-600 rounded-3xl mx-auto mb-4 flex items-center justify-center text-white text-4xl font-bold transition-transform duration-300 group-hover:scale-105">
-                MG
+              <div className="w-32 h-32 rounded-3xl mx-auto mb-4 overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105">
+                <img src="/logo.png" alt="Logo Mattéo Grech" className="w-full h-full object-cover" />
               </div>
               <h2 className="text-xl font-bold text-warm-700">Mattéo Grech</h2>
               <p className="text-muted-foreground text-sm mt-1">En recherche d'alternance pour la rentrée 2026</p>

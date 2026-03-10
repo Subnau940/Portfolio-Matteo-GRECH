@@ -19,8 +19,8 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 bg-gradient-to-br from-warm-400 to-warm-600 rounded-xl flex items-center justify-center text-white font-bold text-sm transition-transform duration-200 group-hover:scale-110">
-            MG
+          <div className="w-9 h-9 rounded-xl overflow-hidden transition-transform duration-200 group-hover:scale-110 shadow-sm">
+            <img src="/logo.png" alt="Logo Mattéo Grech" className="w-full h-full object-cover" />
           </div>
           <span className="font-bold text-lg text-foreground hidden sm:block">
             <span className="text-warm-600">M.GRECH</span> Portfolio
