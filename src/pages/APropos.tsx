@@ -17,6 +17,7 @@ const sections = [
 const APropos = () => {
   const [showCV, setShowCV] = useState(true)
   const [diploFilter, setDiploFilter] = useState<DiploFilter>("all")
+  const [compTheme, setCompTheme] = useState<string>("all")
   const [activeSection, setActiveSection] = useState("section-profil")
   const [tocOpen, setTocOpen] = useState(false)
 
@@ -369,31 +370,95 @@ const APropos = () => {
 
         {/* Compétences techniques */}
         <div id="section-competences" className="mb-8 scroll-mt-24">
-          <div className="mb-6">
+          {/* En-tête + filtres thèmes */}
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <h2 className="text-2xl font-bold text-warm-700">Compétences techniques</h2>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setCompTheme("all")}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 active:scale-95
+                  ${compTheme === "all"
+                    ? "bg-warm-500 text-white shadow-md"
+                    : "bg-white/80 border border-warm-200 text-muted-foreground hover:bg-warm-50 hover:text-warm-700"
+                  }`}
+              >
+                Tout
+              </button>
+              {competences.map((cat) => {
+                const Icon = cat.icon
+                const isActive = compTheme === cat.categorie
+                return (
+                  <button
+                    key={cat.categorie}
+                    onClick={() => setCompTheme(isActive ? "all" : cat.categorie)}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 active:scale-95
+                      ${isActive
+                        ? `bg-gradient-to-r ${cat.color} text-white shadow-md`
+                        : "bg-white/80 border border-warm-200 text-muted-foreground hover:bg-warm-50 hover:text-warm-700"
+                      }`}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {cat.categorie.split(" ")[0]}
+                  </button>
+                )
+              })}
+            </div>
           </div>
 
           {/* Grille */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {competences.map((cat, i) => (
-              <div key={i} className="glass-card rounded-3xl p-6 card-hover animate-scale-in" style={{ animationDelay: `${i * 0.08}s` }}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-10 h-10 bg-gradient-to-br ${cat.color} rounded-2xl flex items-center justify-center flex-shrink-0`}>
-                    <cat.icon className="h-5 w-5 text-white" />
+          {compTheme === "all" ? (
+            <div className="grid md:grid-cols-2 gap-6">
+              {competences.map((cat, i) => (
+                <div
+                  key={i}
+                  className="glass-card rounded-3xl p-6 card-hover animate-scale-in cursor-pointer"
+                  style={{ animationDelay: `${i * 0.08}s` }}
+                  onClick={() => setCompTheme(cat.categorie)}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`w-10 h-10 bg-gradient-to-br ${cat.color} rounded-2xl flex items-center justify-center flex-shrink-0`}>
+                      <cat.icon className="h-5 w-5 text-white" />
+                    </div>
+                    <h3 className="font-bold text-warm-700">{cat.categorie}</h3>
+                    <span className="ml-auto text-xs text-muted-foreground">{cat.items.length} compétences →</span>
                   </div>
-                  <h3 className="font-bold text-warm-700">{cat.categorie}</h3>
+                  <ul className="space-y-2">
+                    {cat.items.map((item, j) => (
+                      <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <div className="w-1.5 h-1.5 bg-warm-500 rounded-full flex-shrink-0 mt-1.5"></div>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="space-y-2">
-                  {cat.items.map((item, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <div className="w-1.5 h-1.5 bg-warm-500 rounded-full flex-shrink-0 mt-1.5"></div>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            (() => {
+              const cat = competences.find(c => c.categorie === compTheme)!
+              return (
+                <div className="glass-card rounded-3xl p-8 animate-scale-in">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className={`w-12 h-12 bg-gradient-to-br ${cat.color} rounded-2xl flex items-center justify-center flex-shrink-0`}>
+                      <cat.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-xl text-warm-700">{cat.categorie}</h3>
+                      <p className="text-sm text-muted-foreground">{cat.items.length} compétences</p>
+                    </div>
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {cat.items.map((item, j) => (
+                      <div key={j} className="flex items-start gap-3 p-3 bg-warm-50 rounded-2xl border border-warm-100">
+                        <div className={`w-2 h-2 bg-gradient-to-br ${cat.color} rounded-full flex-shrink-0 mt-1.5`}></div>
+                        <span className="text-sm text-warm-800 leading-snug">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+            })()
+          )}
         </div>
 
         {/* Parcours scolaire */}
