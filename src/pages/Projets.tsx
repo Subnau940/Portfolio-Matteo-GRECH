@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink, Github, Calendar, ChevronDown, ChevronUp } from "lucide-react";
+import { ExternalLink, Github, Calendar, ChevronDown, ChevronUp, Download } from "lucide-react";
 
 const DESCRIPTION_LIMIT = 160;
 
@@ -23,7 +23,7 @@ const Projets = () => {
       date: "2024",
       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=300&fit=crop",
       competences: ["Gestion du patrimoine informatique", "Réponse aux incidents", "Travail en mode projet"],
-      github: "#",
+      github: null,
       demo: ["/1000016892.png", "/1000016894.png"],
     },
     {
@@ -37,7 +37,7 @@ const Projets = () => {
         "Travail en mode projet",
         "Organisation du développement professionnel"
       ],
-      github: "#",
+      github: null,
       demo: ["/1000016898.jpg"],
     },
     {
@@ -52,7 +52,7 @@ const Projets = () => {
         "Documentation technique",
         "Suivi des rapports CVE"
       ],
-      github: "#",
+      github: null,
       demo: "#"
     },
     {
@@ -66,7 +66,7 @@ const Projets = () => {
         "Analyse de trafic",
         "Détection d'intrusions"
       ],
-      github: "#",
+      github: null,
       demo: ["/pfsens.png"],
     },
     {
@@ -80,7 +80,7 @@ const Projets = () => {
         "Gestion des identités",
         "Configuration réseau"
       ],
-      github: "#",
+      github: null,
       demo: ["/ad-ds.png"],
     },
     {
@@ -99,7 +99,7 @@ const Projets = () => {
         "Simulation d'attaque (Hydra, brute force SSH)",
         "Configuration rsyslog, UFW, iptables, Filebeat"
       ],
-      github: "#",
+      github: null,
       demo: "#",
     },
     {
@@ -118,7 +118,7 @@ const Projets = () => {
         "Création de dashboards personnalisés",
         "Tests de supervision et dépannage système"
       ],
-      github: "#",
+      github: null,
       demo: ["/zabbix.png", "/zabbix2.png"],
     },
     {
@@ -134,7 +134,7 @@ const Projets = () => {
         "Travail collaboratif en équipe",
         "Présentation de la formation et des activités"
       ],
-      github: "#",
+      github: "https://github.com/WanPanchi/esicad-sio1-blog-hub",
       demo: "https://esicad-sio1-blog-hub.lovable.app/bts-sio1",
     },
     {
@@ -151,7 +151,7 @@ const Projets = () => {
         "Amélioration de l'efficacité de la hotline",
         "Autonomie des utilisateurs finaux"
       ],
-      github: "#",
+      github: null,
       demo: "#",
     },
   ];
@@ -241,13 +241,17 @@ const Projets = () => {
                   </div>
 
                   <div className="flex gap-3 mb-4">
-                    <a
-                      href={projet.github}
-                      className="flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-2xl hover:bg-foreground/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
-                    >
-                      <Github className="h-4 w-4" />
-                      Code
-                    </a>
+                    {projet.github && (
+                      <a
+                        href={projet.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-2xl hover:bg-foreground/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                      >
+                        <Github className="h-4 w-4" />
+                        Code
+                      </a>
+                    )}
                     {/* Demo : URL externe → lien, tableau d'images → bouton toggle */}
                     {projet.demo !== "#" && typeof projet.demo === "string" && (
                       <a
@@ -272,14 +276,23 @@ const Projets = () => {
                   </div>
 
                   {showDemo[index] && Array.isArray(projet.demo) && (
-                    <div className="mt-4 space-y-2">
+                    <div className="mt-4 space-y-4">
                       {projet.demo.map((imgSrc, i) => (
-                        <img
-                          key={i}
-                          src={imgSrc}
-                          alt={`Demo ${i}`}
-                          className="w-full rounded-lg border border-warm-200"
-                        />
+                        <div key={i} className="relative group/img">
+                          <img
+                            src={imgSrc}
+                            alt={`Demo ${i + 1}`}
+                            className="w-full rounded-lg border border-warm-200"
+                          />
+                          <a
+                            href={imgSrc}
+                            download
+                            className="absolute top-2 right-2 flex items-center gap-1.5 px-3 py-1.5 bg-black/60 hover:bg-black/80 text-white text-xs font-medium rounded-xl backdrop-blur-sm transition-all duration-200 opacity-0 group-hover/img:opacity-100"
+                          >
+                            <Download className="h-3.5 w-3.5" />
+                            Télécharger
+                          </a>
+                        </div>
                       ))}
                     </div>
                   )}

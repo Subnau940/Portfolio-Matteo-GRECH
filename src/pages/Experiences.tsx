@@ -54,10 +54,10 @@ const experiences: Experience[] = [
   {
     type: "job",
     titre: "Préparateur de commande",
-    entreprise: "Leclerc Garosud",
+    entreprise: "E.Leclerc Drive",
     lieu: "Montpellier",
-    periode: "2022",
-    annee: 2022,
+    periode: "2023",
+    annee: 2023,
     duree: "1 mois",
     description: "Job d'été en entrepôt logistique au sein du centre Leclerc Garosud.",
     missions: [
@@ -91,7 +91,7 @@ const experiences: Experience[] = [
     lieu: "Montpellier",
     periode: "2023",
     annee: 2023,
-    duree: "2 mois",
+    duree: "2 × 1 mois",
     description: "Support utilisateur au sein du service informatique de la délégation régionale CNRS.",
     missions: [
       "Support utilisateur et gestion des tickets GLPI",
