@@ -53,6 +53,23 @@ const experiences: Experience[] = [
   },
   {
     type: "job",
+    titre: "Préparateur de commande",
+    entreprise: "Leclerc Garosud",
+    lieu: "Montpellier",
+    periode: "2022",
+    annee: 2022,
+    duree: "1 mois",
+    description: "Job d'été en entrepôt logistique au sein du centre Leclerc Garosud.",
+    missions: [
+      "Préparation des commandes selon les bons de préparation",
+      "Gestion et rangement des stocks en entrepôt",
+      "Utilisation de scanners et outils logistiques",
+      "Respect des délais et des cadences de préparation",
+    ],
+    competences: ["Logistique", "Gestion de stock", "Organisation", "Rigueur", "Travail en équipe"],
+  },
+  {
+    type: "job",
     titre: "Agent de quai – Livraison",
     entreprise: "GLS",
     lieu: "Montpellier",
@@ -151,7 +168,7 @@ const Experiences = () => {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-6 mb-8">
           <div className="glass-card rounded-3xl p-6 text-center animate-scale-in">
-            <div className="text-3xl font-bold text-primary mb-2">6</div>
+            <div className="text-3xl font-bold text-primary mb-2">7</div>
             <p className="text-muted-foreground text-sm">Expériences</p>
           </div>
           <div className="glass-card rounded-3xl p-6 text-center animate-scale-in" style={{ animationDelay: "0.1s" }}>
@@ -205,8 +222,8 @@ const Experiences = () => {
                         {config.label}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold mb-1 text-warm-700">{exp.titre}</h3>
-                    <h4 className="text-base font-semibold text-primary mb-3">{exp.entreprise}</h4>
+                    <h3 className="text-xl font-bold mb-1 text-warm-700">{exp.entreprise}</h3>
+                    <h4 className="text-base font-semibold text-primary mb-3">{exp.titre}</h4>
                     <div className="space-y-2 text-sm text-muted-foreground">
                       <div className="flex items-center gap-2">
                         <MapPin className="h-4 w-4 flex-shrink-0" />
