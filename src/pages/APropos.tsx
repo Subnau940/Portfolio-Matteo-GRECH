@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react"
-import { Mail, Phone, MapPin, Shield, Network, Monitor, Dumbbell, Bike, Telescope, BookOpen, GraduationCap, Award, Calendar, CheckCircle, Download, FileText, User, Wrench, BookMarked, Menu, X } from "lucide-react"
+import { Mail, Phone, MapPin, Shield, Network, Monitor, Dumbbell, Bike, Telescope, BookOpen, GraduationCap, Award, Calendar, CheckCircle, Download, FileText, User, Wrench, BookMarked, Menu, X, Activity, Terminal, ListChecks } from "lucide-react"
 import { Link } from "react-router-dom"
 
 type DiploFilter = "all" | "diplomes" | "certifications"
+type CompFilter  = "all" | "travail" | "formation"
+type CompSource  = "travail" | "formation"
 
 const sections = [
   { id: "section-profil",        label: "Profil",         icon: User },
@@ -17,6 +19,7 @@ const sections = [
 const APropos = () => {
   const [showCV, setShowCV] = useState(true)
   const [diploFilter, setDiploFilter] = useState<DiploFilter>("all")
+  const [compFilter, setCompFilter] = useState<CompFilter>("all")
   const [activeSection, setActiveSection] = useState("section-profil")
   const [tocOpen, setTocOpen] = useState(false)
 
@@ -66,21 +69,86 @@ const APropos = () => {
     { label: "Cosmologie", icon: Telescope },
   ]
 
-  const competences = [
-    {
-      icon: Shield,
-      categorie: "Cybersécurité",
-      items: ["IAM", "Hardening (ACL)", "Sensibilisation utilisateurs", "SIEM/XDR (Wazuh)", "IDS/IPS (Snort)"],
-    },
+  const competences: { icon: React.ElementType; categorie: string; color: string; items: { label: string; source: CompSource }[] }[] = [
     {
       icon: Network,
-      categorie: "Réseau",
-      items: ["Switch (VLANs, PoE, sécurité des ports)", "Routeurs Wi-Fi/4G", "Firewall (NAT)", "VPN (IPsec/SSL)", "Protocoles sécurisés"],
+      categorie: "Infrastructure & Réseau",
+      color: "from-blue-500 to-blue-700",
+      items: [
+        { label: "Supervision switches, routeurs, Wi-Fi, antennes 4G en production", source: "travail" },
+        { label: "VPN (IPsec/SSL) — configuration et dépannage", source: "travail" },
+        { label: "Segmentation VLANs, règles NAT et firewall", source: "travail" },
+        { label: "Routage avancé — diagnostic et remise en service complète", source: "travail" },
+        { label: "Configuration switches (VLANs, PoE, sécurité des ports)", source: "formation" },
+        { label: "Routeurs et pare-feux", source: "formation" },
+        { label: "Services réseau (DHCP, DNS, proxy)", source: "formation" },
+        { label: "Analyse de trames (Wireshark)", source: "formation" },
+        { label: "Protocoles de routage statique et dynamique", source: "formation" },
+        { label: "Câblage et architecture réseau", source: "formation" },
+      ],
+    },
+    {
+      icon: Shield,
+      categorie: "Cybersécurité défensive",
+      color: "from-red-500 to-red-700",
+      items: [
+        { label: "Déploiement SIEM/XDR Wazuh (Proxmox, agents Win/Linux, Active Response)", source: "formation" },
+        { label: "IDS/IPS Snort sur pfSense — règles de détection réseau", source: "formation" },
+        { label: "Hardening CIS Benchmark (SCA)", source: "formation" },
+        { label: "IAM, GPO, ACL — hardening système", source: "formation" },
+        { label: "Analyse de vulnérabilités, tests basiques (lab Kali/Windows)", source: "formation" },
+        { label: "Veille active SOC, threat intelligence", source: "formation" },
+      ],
     },
     {
       icon: Monitor,
-      categorie: "Système",
-      items: ["Active Directory (GPO)", "Windows Server", "Linux (CLI/Bash)", "GLPI", "ServiceNow"],
+      categorie: "Administration Système",
+      color: "from-purple-500 to-purple-700",
+      items: [
+        { label: "Active Directory (AD-DS, DNS, DHCP, GPO)", source: "formation" },
+        { label: "Windows Server — administration et configuration", source: "formation" },
+        { label: "Linux — CLI/Bash", source: "formation" },
+        { label: "Virtualisation Proxmox et VMware", source: "formation" },
+        { label: "Sauvegarde et restauration de systèmes", source: "formation" },
+        { label: "GLPI — gestion du parc et des tickets", source: "travail" },
+        { label: "ServiceNow — base de connaissances et gestion d'incidents", source: "travail" },
+      ],
+    },
+    {
+      icon: Activity,
+      categorie: "Supervision & Monitoring",
+      color: "from-green-500 to-green-700",
+      items: [
+        { label: "Déploiement Zabbix 7.0 LTS (Server, Frontend, Agent)", source: "formation" },
+        { label: "Supervision CPU, RAM, disque, réseau — dashboards personnalisés", source: "formation" },
+        { label: "Configuration des triggers et tests d'alertes", source: "formation" },
+        { label: "Supervision réseau 4G/Wi-Fi en conditions de production", source: "travail" },
+        { label: "Gestion des alertes et résolution d'incidents en temps réel", source: "travail" },
+      ],
+    },
+    {
+      icon: Terminal,
+      categorie: "Développement & Outillage",
+      color: "from-warm-400 to-warm-600",
+      items: [
+        { label: "HTML, CSS, JavaScript, React — portfolio perso + blog BTS (Vercel)", source: "formation" },
+        { label: "Scripting Bash et Python — automatisation de tâches système", source: "formation" },
+        { label: "SQL / MySQL", source: "formation" },
+        { label: "Développement d'outils internes pour l'équipe", source: "travail" },
+        { label: "Documentation technique — base de connaissances, tutoriels vidéo", source: "travail" },
+        { label: "Co-révision du lexique interne de l'entreprise", source: "travail" },
+      ],
+    },
+    {
+      icon: ListChecks,
+      categorie: "Gestion de projet & Méthodes",
+      color: "from-amber-500 to-amber-700",
+      items: [
+        { label: "Méthode agile (Trello/Scrum)", source: "formation" },
+        { label: "Rédaction de documentations techniques et rapports de projet", source: "formation" },
+        { label: "Réponse aux appels d'offres, gestion relation client", source: "formation" },
+        { label: "Sensibilisation et formation des utilisateurs", source: "formation" },
+      ],
     },
   ]
 
@@ -153,6 +221,13 @@ const APropos = () => {
       downloadLabel: null,
     },
   ]
+
+  const filteredComps = competences
+    .map(cat => ({
+      ...cat,
+      items: compFilter === "all" ? cat.items : cat.items.filter(item => item.source === compFilter),
+    }))
+    .filter(cat => cat.items.length > 0)
 
   const filteredCerts = certifications.filter((c) => {
     if (diploFilter === "all") return true
@@ -307,21 +382,54 @@ const APropos = () => {
 
         {/* Compétences techniques */}
         <div id="section-competences" className="mb-8 scroll-mt-24">
-          <h2 className="text-2xl font-bold mb-6 text-warm-700">Compétences techniques</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {competences.map((cat, i) => (
-              <div key={i} className="glass-card rounded-3xl p-6 card-hover animate-scale-in" style={{ animationDelay: `${i * 0.1}s` }}>
+          {/* En-tête + filtres */}
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+            <h2 className="text-2xl font-bold text-warm-700">Compétences techniques</h2>
+            <div className="flex flex-wrap gap-2">
+              {([
+                { label: "Tout", value: "all" },
+                { label: "Travail — INFO.U", value: "travail" },
+                { label: "Formation — BTS SIO SISR", value: "formation" },
+              ] as { label: string; value: CompFilter }[]).map((f) => (
+                <button
+                  key={f.value}
+                  onClick={() => setCompFilter(f.value)}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 active:scale-95
+                    ${compFilter === f.value
+                      ? "bg-warm-500 text-white shadow-md"
+                      : "bg-white/80 border border-warm-200 text-muted-foreground hover:bg-warm-50 hover:text-warm-700"
+                    }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Grille */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {filteredComps.map((cat, i) => (
+              <div key={i} className="glass-card rounded-3xl p-6 card-hover animate-scale-in" style={{ animationDelay: `${i * 0.08}s` }}>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-warm-400 to-warm-600 rounded-2xl flex items-center justify-center">
+                  <div className={`w-10 h-10 bg-gradient-to-br ${cat.color} rounded-2xl flex items-center justify-center flex-shrink-0`}>
                     <cat.icon className="h-5 w-5 text-white" />
                   </div>
                   <h3 className="font-bold text-warm-700">{cat.categorie}</h3>
                 </div>
                 <ul className="space-y-2">
                   {cat.items.map((item, j) => (
-                    <li key={j} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <div className="w-1.5 h-1.5 bg-warm-500 rounded-full flex-shrink-0"></div>
-                      {item}
+                    <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <div className="w-1.5 h-1.5 bg-warm-500 rounded-full flex-shrink-0 mt-1.5"></div>
+                      <span className="flex-1">{item.label}</span>
+                      {compFilter === "all" && (
+                        <span className={`px-1.5 py-0.5 rounded-md text-xs font-semibold flex-shrink-0
+                          ${item.source === "travail"
+                            ? "bg-green-100 text-green-700"
+                            : "bg-blue-100 text-blue-700"
+                          }`}>
+                          {item.source === "travail" ? "Travail" : "Formation"}
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
