@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Eye, Globe, ShieldAlert, Zap, FileSearch, ExternalLink, Star } from "lucide-react"
+import { Eye, Globe, ShieldAlert, Zap, FileSearch, ExternalLink, Star, ChevronDown, ChevronUp, CheckCircle, Smartphone } from "lucide-react"
 
 type VeilleFilter = "all" | "detection" | "threat" | "vuln" | "offensif" | "forensic"
 
@@ -163,8 +163,38 @@ const sources: VeilleSource[] = [
   },
 ]
 
+const feedlySteps = [
+  {
+    num: "01",
+    titre: "Créer un compte",
+    detail: "Inscris-toi gratuitement sur feedly.com ou télécharge l'app mobile. Le plan gratuit suffit pour démarrer.",
+  },
+  {
+    num: "02",
+    titre: "Ajouter des flux RSS",
+    detail: "Clique sur « Add Content », colle l'URL d'un site ou son flux RSS (ex: cert.ssi.gouv.fr/feed/). Feedly le trouve automatiquement.",
+  },
+  {
+    num: "03",
+    titre: "Organiser en dossiers",
+    detail: "Groupe tes sources par thème : Cybersécurité, Threat Intel, IA… Tu vois directement combien d'articles non lus attendent par catégorie.",
+  },
+  {
+    num: "04",
+    titre: "Prioriser les sources clés",
+    detail: "Épingle les sources incontournables (CERT-FR, CISA…) en haut de ta liste. Utilise le marquage « Lu plus tard » pour les articles à approfondir.",
+  },
+  {
+    num: "05",
+    titre: "Instaurer une routine",
+    detail: "5 min le matin : parcourir les titres. 15 min le soir : lire les alertes critiques en profondeur. Consistance > quantité.",
+  },
+]
+
 const Veille = () => {
   const [activeFilter, setActiveFilter] = useState<VeilleFilter>("all")
+  const [feedlyOpen, setFeedlyOpen] = useState(false)
+  const [feedlyImg, setFeedlyImg] = useState(0)
 
   const filtered = activeFilter === "all" ? sources : sources.filter(s => s.categorie === activeFilter)
   const principal = filtered.filter(s => s.priorite === "principal")
@@ -328,6 +358,101 @@ const Veille = () => {
             </div>
           </div>
         )}
+
+        {/* ── Ma veille avec Feedly ── */}
+        <div className="mt-12">
+          {/* En-tête accordéon */}
+          <button
+            onClick={() => setFeedlyOpen(o => !o)}
+            className="w-full flex items-center justify-between gap-4 glass-card rounded-3xl px-8 py-5 hover:shadow-md transition-all duration-200 active:scale-[0.99] group"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-11 h-11 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow">
+                <Smartphone className="h-5 w-5 text-white" />
+              </div>
+              <div className="text-left">
+                <h2 className="text-lg font-bold text-warm-700 group-hover:text-warm-900 transition-colors">
+                  Ma mise en place avec Feedly
+                </h2>
+                <p className="text-sm text-muted-foreground">Captures d'écran de mon Feedly + mini tuto veille efficace</p>
+              </div>
+            </div>
+            <div className={`w-8 h-8 rounded-xl bg-warm-100 flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${feedlyOpen ? "rotate-180" : ""}`}>
+              <ChevronDown className="h-4 w-4 text-warm-600" />
+            </div>
+          </button>
+
+          {/* Corps dépliant */}
+          {feedlyOpen && (
+            <div className="mt-4 grid lg:grid-cols-2 gap-6 animate-scale-in">
+
+              {/* Galerie screenshots */}
+              <div className="glass-card rounded-3xl p-6">
+                <h3 className="font-bold text-warm-700 mb-4 flex items-center gap-2">
+                  <Smartphone className="h-4 w-4 text-orange-500" />
+                  Mon Feedly en pratique
+                </h3>
+                {/* Image principale */}
+                <div className="rounded-2xl overflow-hidden border border-warm-200 mb-3 bg-gray-50">
+                  <img
+                    src={`/feedly-${feedlyImg + 1}.jpg`}
+                    alt={`Feedly screenshot ${feedlyImg + 1}`}
+                    className="w-full object-contain max-h-96"
+                  />
+                </div>
+                {/* Miniatures */}
+                <div className="flex gap-2">
+                  {[0, 1, 2].map(i => (
+                    <button
+                      key={i}
+                      onClick={() => setFeedlyImg(i)}
+                      className={`flex-1 rounded-xl overflow-hidden border-2 transition-all duration-150
+                        ${feedlyImg === i ? "border-orange-400 shadow-md scale-[1.03]" : "border-warm-200 hover:border-orange-300"}`}
+                    >
+                      <img
+                        src={`/feedly-${i + 1}.jpg`}
+                        alt={`Miniature ${i + 1}`}
+                        className="w-full h-16 object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+                <p className="text-xs text-muted-foreground mt-3 text-center">
+                  {feedlyImg === 0 && "Dossier Cybersécurité avec 9 sources actives (87 articles)"}
+                  {feedlyImg === 1 && "Dossier IA — Hugging Face, MIT Technology Review, Import AI…"}
+                  {feedlyImg === 2 && "Ajout d'un flux RSS — ici cert.ssi.gouv.fr/feed/ (CERT-FR)"}
+                </p>
+              </div>
+
+              {/* Mini tuto */}
+              <div className="glass-card rounded-3xl p-6">
+                <h3 className="font-bold text-warm-700 mb-5 flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  Faire une veille efficace avec Feedly
+                </h3>
+                <ol className="space-y-4">
+                  {feedlySteps.map(step => (
+                    <li key={step.num} className="flex gap-4">
+                      <span className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-500 text-white text-xs font-bold rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5 shadow">
+                        {step.num}
+                      </span>
+                      <div>
+                        <p className="font-semibold text-warm-700 text-sm leading-snug">{step.titre}</p>
+                        <p className="text-sm text-muted-foreground mt-0.5 leading-relaxed">{step.detail}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+                <div className="mt-5 p-3 bg-orange-50 rounded-2xl border border-orange-100">
+                  <p className="text-xs text-orange-700 font-medium">
+                    Feedly agrège automatiquement les flux RSS — plus besoin de visiter chaque site, tout arrive au même endroit.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          )}
+        </div>
 
       </div>
     </div>
