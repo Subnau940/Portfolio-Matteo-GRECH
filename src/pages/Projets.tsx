@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink, Github, Calendar, ChevronDown, ChevronUp, Download } from "lucide-react";
+import { ExternalLink, Github, Calendar, ChevronDown, ChevronUp, Download, LayoutList } from "lucide-react";
 
 const DESCRIPTION_LIMIT = 160;
 
@@ -120,6 +120,26 @@ const Projets = () => {
       ],
       github: null,
       demo: ["/zabbix.png", "/zabbix2.png"],
+    },
+    {
+      title: "Blog SIO1 – Site vitrine de la classe avec base de données",
+      description: "Développement en équipe d'un site web complet présentant la classe BTS SIO SISR : profils des élèves, section école, tableau de notes et espace de contact. Le projet intègre une base de données SQL pour la gestion des utilisateurs, des profils et des notes, un système d'authentification PHP (login, sessions, changement de mot de passe) et un déploiement en production via Railway avec Docker et Nginx. La gestion du projet s'est faite en méthode agile avec Trello pour la répartition des tâches et le suivi de l'avancement. Conformité RGPD respectée (consentement photos élèves).",
+      technologies: ["PHP", "SQL", "HTML", "CSS", "Docker", "Nginx", "Railway", "BTS SIO SISR"],
+      date: "2024 – 2025",
+      image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&auto=format&fit=crop&q=60",
+      competences: [
+        "Développement PHP back-end (authentification, sessions, CRUD)",
+        "Modélisation et intégration base de données SQL",
+        "Gestion des utilisateurs, profils et notes",
+        "Déploiement conteneurisé Docker + Nginx sur Railway",
+        "Respect du RGPD et gestion du consentement",
+        "Méthode agile (Trello) — planification et suivi de sprint",
+        "Travail collaboratif en équipe (132 commits, fork collaboratif)",
+        "Architecture MVC côté serveur (routing, header, sessions)",
+      ],
+      github: "https://github.com/Subnau940/Blog-sio1",
+      trello: "https://trello.com/b/xN4TcR0U/projet-bd-portfolio",
+      demo: "https://blog-sio1-production.up.railway.app",
     },
     {
       title: "Blog de classe BTS SIO SISR – Site vitrine de la promotion",
@@ -250,6 +270,17 @@ const Projets = () => {
                       >
                         <Github className="h-4 w-4" />
                         Code
+                      </a>
+                    )}
+                    {"trello" in projet && projet.trello && (
+                      <a
+                        href={(projet as any).trello}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-2xl hover:bg-blue-600 transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95"
+                      >
+                        <LayoutList className="h-4 w-4" />
+                        Trello
                       </a>
                     )}
                     {/* Demo : URL externe → lien, tableau d'images → bouton toggle */}
