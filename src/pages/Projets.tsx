@@ -18,7 +18,7 @@ const Projets = () => {
   const projets = [
     {
       title: "Supervision et gestion des alertes réseaux 4G et Wi-Fi",
-      description: "Mise en place d'un système ...",
+      description: "Dans le cadre du Projet Aérien, j'assure une supervision hebdomadaire de l'infrastructure SD-WAN déployée sur environ 1 500 points de vente, couvrant les équipements Wi-Fi Cisco Meraki et les routeurs 4G, avec analyse des incidents, identification des faux positifs et restitution synthétique à destination de l'équipe N2.",
       technologies: ["Supervision réseau", "4G", "Wi-Fi", "Gestion d'incidents"],
       date: "2024",
       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=300&fit=crop",
@@ -38,7 +38,8 @@ const Projets = () => {
         "Organisation du développement professionnel"
       ],
       github: null,
-      demo: ["/1000016898.jpg"],
+      demo: "#",
+      lexique: "/Lexique_INFO_U_20242025.pdf",
     },
     {
       title: "Veille informatique en cybersécurité",
@@ -67,7 +68,7 @@ const Projets = () => {
         "Détection d'intrusions"
       ],
       github: null,
-      demo: ["/pfsens.png"],
+      demo: ["/pfsens.png", "/pfsens-cli.png"],
     },
     {
       title: "Implémentation d'un serveur Active Directory (AD-DS)",
@@ -81,7 +82,8 @@ const Projets = () => {
         "Configuration réseau"
       ],
       github: null,
-      demo: ["/ad-ds.png"],
+      demo: "#",
+      rapport: "/Rapport_AD_BTS_SIO_GRECH.docx",
     },
     {
       title: "Déploiement SIEM/XDR Wazuh – Client CUB (E6 BTS SIO SISR)",
@@ -174,7 +176,8 @@ const Projets = () => {
         "Autonomie des utilisateurs finaux"
       ],
       github: null,
-      demo: "#",
+      demo: ["/oasis-documentation.png"],
+      note: "Du au caractère privé de ces informations, je ne peux pas montrer davantage.",
     },
   ];
 
@@ -295,6 +298,16 @@ const Projets = () => {
                         Rapport
                       </a>
                     )}
+                    {"lexique" in projet && (projet as any).lexique && (
+                      <a
+                        href={(projet as any).lexique}
+                        download
+                        className="flex items-center gap-2 px-4 py-2 bg-warm-600 text-white rounded-2xl hover:bg-warm-700 transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95"
+                      >
+                        <Download className="h-4 w-4" />
+                        Lexique
+                      </a>
+                    )}
                     {/* Demo : URL externe → lien, tableau d'images → bouton toggle */}
                     {projet.demo !== "#" && typeof projet.demo === "string" && (
                       <a
@@ -317,6 +330,10 @@ const Projets = () => {
                       </button>
                     )}
                   </div>
+
+                  {"note" in projet && (projet as any).note && (
+                    <p className="text-xs text-muted-foreground italic mb-2">* {(projet as any).note}</p>
+                  )}
 
                   {showDemo[index] && Array.isArray(projet.demo) && (
                     <div className="mt-4 space-y-4">
