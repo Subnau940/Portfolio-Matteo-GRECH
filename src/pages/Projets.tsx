@@ -101,7 +101,6 @@ const Projets = () => {
       ],
       github: null,
       demo: "#",
-      rapport: "/Rapport BTS SIO PROJET WAZUH.docx",
     },
     {
       title: "Déploiement solution de supervision Zabbix (E6 BTS SIO SISR)",
@@ -121,7 +120,6 @@ const Projets = () => {
       ],
       github: null,
       demo: ["/zabbix.png", "/zabbix2.png"],
-      rapport: "/Supervision_Zabbix_Compte_Rendu.docx",
     },
     {
       title: "Blog SIO1 – Site vitrine de la classe avec base de données",
@@ -283,16 +281,6 @@ const Projets = () => {
                       >
                         <LayoutList className="h-4 w-4" />
                         Trello
-                      </a>
-                    )}
-                    {"rapport" in projet && projet.rapport && (
-                      <a
-                        href={(projet as any).rapport}
-                        download
-                        className="flex items-center gap-2 px-4 py-2 bg-warm-600 text-white rounded-2xl hover:bg-warm-700 transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95"
-                      >
-                        <Download className="h-4 w-4" />
-                        Rapport
                       </a>
                     )}
                     {/* Demo : URL externe → lien, tableau d'images → bouton toggle */}
