@@ -27,8 +27,8 @@ const Diplomes = () => {
     },
     {
       annee: "2026 – 2029",
-      titre: "Bachelor Administrateur Réseaux",
-      lieu: "EPSI",
+      titre: "Bachelor Cybersécurité & Administrateur Réseaux",
+      lieu: "My Digital School",
       ville: "Montpellier",
       statut: "À venir",
       mention: null,
