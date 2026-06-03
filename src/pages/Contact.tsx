@@ -112,7 +112,7 @@ const Contact = () => {
             <div className="glass-card rounded-3xl p-8 animate-fade-in" style={{ animationDelay: "0.3s" }}>
               <h2 className="text-xl font-bold mb-4 text-warm-700">Retrouvez-moi sur</h2>
               <a
-                href="https://www.linkedin.com/in/matteo-grech-369b06268/"
+                href="https://www.linkedin.com/in/matteo-g-369b06268"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition-all duration-200 hover:scale-105 hover:shadow-lg"
