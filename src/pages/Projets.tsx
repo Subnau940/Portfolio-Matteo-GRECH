@@ -103,7 +103,7 @@ const Projets = () => {
       ],
       github: null,
       demo: "#",
-      rapport: "/Rapport%20BTS%20SIO%20PROJET%20WAZUH.docx",
+      rapport: "/Rapport_BTS_SIO_PROJET_WAZUH.docx",
     },
     {
       title: "Déploiement solution de supervision Zabbix (E6 BTS SIO SISR)",
