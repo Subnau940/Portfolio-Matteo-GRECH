@@ -103,7 +103,7 @@ const Projets = () => {
       ],
       github: null,
       demo: "#",
-      rapport: "/Rapport_BTS_SIO_PROJET_WAZUH.docx",
+      rapport: "/Rapport_BTS_SIO_PROJET_WAZUH.pdf",
     },
     {
       title: "Déploiement solution de supervision Zabbix (E6 BTS SIO SISR)",
@@ -123,7 +123,7 @@ const Projets = () => {
       ],
       github: null,
       demo: ["/zabbix.png", "/zabbix2.png"],
-      rapport: "/Supervision_Zabbix_Compte_Rendu.docx",
+      rapport: "/Supervision_Zabbix_Compte_Rendu.pdf",
     },
     {
       title: "Blog SIO1 – Site vitrine de la classe avec base de données",
