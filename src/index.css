@@ -9,44 +9,44 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 28 100% 97%;
-    --foreground: 25 20% 15%;
+    --background: 180 33% 98%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 25 20% 15%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 25 20% 15%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 24 85% 53%;
+    --primary: 175 84% 32%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 28 40% 92%;
-    --secondary-foreground: 25 20% 15%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 28 40% 92%;
-    --muted-foreground: 25 10% 45%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 40%;
 
-    --accent: 22 100% 95%;
-    --accent-foreground: 25 20% 15%;
+    --accent: 166 76% 94%;
+    --accent-foreground: 222 47% 11%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 28 30% 85%;
-    --input: 28 30% 85%;
-    --ring: 24 85% 53%;
+    --border: 214 32% 89%;
+    --input: 214 32% 89%;
+    --ring: 175 84% 32%;
 
     --radius: 1rem;
 
-    --sidebar-background: 28 100% 97%;
-    --sidebar-foreground: 25 20% 15%;
-    --sidebar-primary: 24 85% 53%;
+    --sidebar-background: 180 33% 98%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 175 84% 32%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 22 100% 95%;
-    --sidebar-accent-foreground: 25 20% 15%;
-    --sidebar-border: 28 30% 85%;
-    --sidebar-ring: 24 85% 53%;
+    --sidebar-accent: 166 76% 94%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 89%;
+    --sidebar-ring: 175 84% 32%;
   }
 }
 
@@ -57,7 +57,7 @@ All colors MUST be HSL.
 
   body {
     @apply text-foreground font-medium;
-    background: linear-gradient(135deg, #fef7ed 0%, #ffffff 60%, #fef7ed 100%);
+    background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 55%, #f1f5f9 100%);
     min-height: 100vh;
   }
 

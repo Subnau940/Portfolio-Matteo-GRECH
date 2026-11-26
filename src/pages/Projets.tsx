@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ExternalLink, Github, Calendar, ChevronDown, ChevronUp, Download, LayoutList } from "lucide-react";
+import { ExternalLink, Github, Calendar, ChevronDown, ChevronUp, Download, LayoutList, BookOpen, Bot, Server, Network, Users } from "lucide-react";
+import { DOCS_URL } from "@/lib/links";
 
 const DESCRIPTION_LIMIT = 160;
 
@@ -16,6 +17,81 @@ const Projets = () => {
   };
 
   const projets = [
+    {
+      title: "Agent IA de pentest autonome (IA Heretic locale)",
+      description: "Fabrication d'un LLM local à partir de Qwen3-8B, abliteré avec Heretic (200 essais Optuna, retenu : 6 refus sur 100, divergence KL 0,07), converti en GGUF Q4_K_M et servi par Ollama sur un GPU de 8 Go. Un harnais Python (paramiko) transforme le modèle en agent : il propose une commande, le harnais l'exécute en SSH sur une Kali de lab isolé et lui renvoie le résultat. La V3.2 suit la méthodologie PTES par phases, avec garde-fous (compte dédié à sudo restreint, liste noire de commandes destructrices, limite de tours, anti-boucle), des faits extraits des vraies sorties pour limiter les hallucinations, un lookup CVE via l'API NVD et un RAG GTFOBins. Résultat : élévation de privilèges obtenue en autonomie en lab. Suite : fine-tuning LoRA, harnais neutre, VM cibles vulnérables.",
+      technologies: ["Python", "Ollama", "Qwen3-8B", "Heretic", "llama.cpp", "paramiko", "PTES", "Kali Linux"],
+      date: "2026 · en cours",
+      icon: Bot,
+      competences: [
+        "Abliteration et quantification de LLM (safetensors → GGUF)",
+        "Conception d'un agent : boucle décision / exécution",
+        "Garde-fous d'exécution et moindre privilège",
+        "Réduction des hallucinations (faits vérifiés, RAG)",
+        "Débogage d'environnements CUDA / WSL2",
+      ],
+      github: null,
+      doc: `${DOCS_URL}/projets/ia-heretic/`,
+      demo: "#",
+    },
+    {
+      title: "Base de connaissances cyber et writeups CTF",
+      description: "Site MkDocs Material publié automatiquement par GitHub Actions sur GitHub Pages. Il réunit 23 writeups CTF (picoCTF principalement) en 5 catégories (cryptographie RSA et Boneh-Durfee, forensic pcap et timeline, reverse engineering, injection SQL et vol de session, general skills) et la documentation de mes projets. Chaque writeup suit le même plan : faille, méthode, outils, réflexes à retenir. Les notes sont rédigées dans Obsidian et rendues telles quelles.",
+      technologies: ["MkDocs", "GitHub Actions", "GitHub Pages", "Obsidian", "CTF", "picoCTF"],
+      date: "2026",
+      icon: BookOpen,
+      competences: [
+        "Cryptanalyse, forensic, reverse et exploitation web",
+        "Documentation technique structurée",
+        "CI/CD de site statique",
+      ],
+      github: "https://github.com/Subnau940/CTF-Test-MkDocs",
+      doc: DOCS_URL,
+      demo: "#",
+    },
+    {
+      title: "NetSonar : cartographie réseau multi-sites",
+      description: "Outil interne pour aider les techniciens à comprendre l'infrastructure de chaque magasin sur un parc de plus de 1 500 sites hétérogènes (switches Juniper, Huawei, HP, Aruba). À partir des données LLDP extraites de la base SQL Server, il génère un schéma visuel et navigable, switch par switch et port par port.",
+      technologies: ["LLDP", "SQL Server", "Cartographie réseau", "Outil interne"],
+      date: "2026",
+      icon: Network,
+      competences: [
+        "Exploitation de données réseau (LLDP)",
+        "Requêtage SQL",
+        "Outillage pour l'équipe support",
+      ],
+      github: null,
+      demo: "#",
+      note: "Outil interne : je ne peux pas montrer de captures.",
+    },
+    {
+      title: "Homelab sécurité",
+      description: "Lab virtualisé (VMware Workstation, auparavant Proxmox) monté dans un ordre réfléchi : pare-feu OPNsense puis architecture pfSense en haute disponibilité (CARP) avec VLAN dédiés, domaine Active Directory avec modèle de tiering T0/T1/T2, GLPI, puis SIEM Wazuh 4.11 avec Active Response et supervision Zabbix. Sert de terrain d'entraînement offensif et défensif.",
+      technologies: ["VMware", "OPNsense", "pfSense", "Active Directory", "Wazuh", "Zabbix", "VLAN"],
+      date: "2026 · en cours",
+      icon: Server,
+      competences: [
+        "Segmentation réseau et haute disponibilité",
+        "Durcissement Active Directory (tiering)",
+        "Détection et réponse (SIEM, Active Response)",
+      ],
+      github: null,
+      demo: "#",
+    },
+    {
+      title: "Insider Threat : jeu de sensibilisation cyber",
+      description: "Jeu de société type loup-garou transposé en cybersécurité : la Red Team (les loups) affronte la Blue Team, un CISO remplace le chef du village, et le loup blanc devient la Purple Team. Une application Flutter sert d'ambiance sonore et de support au narrateur. Projet mené en équipe, entièrement en anglais, pour 5 à 14 joueurs.",
+      technologies: ["Flutter", "Game design", "Sensibilisation", "Travail d'équipe"],
+      date: "2026 · en cours",
+      icon: Users,
+      competences: [
+        "Vulgarisation des rôles Red / Blue / Purple Team",
+        "Développement d'application mobile",
+        "Travail en équipe",
+      ],
+      github: null,
+      demo: "#",
+    },
     {
       title: "Supervision et gestion des alertes réseaux 4G et Wi-Fi",
       description: "Dans le cadre du Projet Aérien, j'assure une supervision hebdomadaire de l'infrastructure SD-WAN déployée sur environ 1 500 points de vente, couvrant les équipements Wi-Fi Cisco Meraki et les routeurs 4G, avec analyse des incidents, identification des faux positifs et restitution synthétique à destination de l'équipe N2.",
@@ -186,10 +262,10 @@ const Projets = () => {
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-black bg-gradient-to-r from-warm-500 to-warm-700 bg-clip-text text-transparent">
-            Mes Projets
+            Projets
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Découvrez les projets que j'ai réalisés dans le cadre de ma formation BTS SIO SISR
+            Mes projets perso, en alternance et en formation : les plus récents d'abord.
           </p>
         </div>
 
@@ -208,12 +284,19 @@ const Projets = () => {
                 className="glass-card rounded-3xl overflow-hidden card-hover animate-scale-in group"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-warm-200/20 overflow-hidden">
-                  <img
-                    src={projet.image}
-                    alt={projet.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+                <div className="aspect-video bg-gradient-to-br from-warm-600 via-warm-800 to-slate-900 overflow-hidden flex items-center justify-center">
+                  {"image" in projet && (projet as any).image ? (
+                    <img
+                      src={(projet as any).image}
+                      alt={projet.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  ) : "icon" in projet && (projet as any).icon ? (
+                    (() => {
+                      const Icon = (projet as any).icon;
+                      return <Icon className="h-16 w-16 text-white/90 transition-transform duration-500 group-hover:scale-110" />;
+                    })()
+                  ) : null}
                 </div>
 
                 <div className="p-6">
@@ -265,7 +348,7 @@ const Projets = () => {
                     ))}
                   </div>
 
-                  <div className="flex gap-3 mb-4">
+                  <div className="flex flex-wrap gap-3 mb-4">
                     {projet.github && (
                       <a
                         href={projet.github}
@@ -275,6 +358,17 @@ const Projets = () => {
                       >
                         <Github className="h-4 w-4" />
                         Code
+                      </a>
+                    )}
+                    {"doc" in projet && (projet as any).doc && (
+                      <a
+                        href={(projet as any).doc}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 bg-warm-600 text-white rounded-2xl hover:bg-warm-700 transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95"
+                      >
+                        <BookOpen className="h-4 w-4" />
+                        Documentation
                       </a>
                     )}
                     {"trello" in projet && projet.trello && (
