@@ -40,9 +40,9 @@ export function NetworkBackground() {
           },
         },
         particles: {
-          color: { value: "#ef7811" },
+          color: { value: "#0d9488" },
           links: {
-            color: "#ef7811",
+            color: "#0d9488",
             distance: 160,
             enable: true,
             opacity: 0.45,

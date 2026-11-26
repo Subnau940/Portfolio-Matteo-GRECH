@@ -1,15 +1,17 @@
 import { useState } from "react"
 import { NavLink, Link } from "react-router-dom"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ArrowUpRight } from "lucide-react"
+import { DOCS_URL } from "@/lib/links"
 
 const navItems = [
-  { title: "À Propos de Moi", url: "/apropos" },
-  { title: "Expériences", url: "/experiences" },
   { title: "Projets", url: "/projets" },
-  { title: "Tableau de synthèse E5", url: "/tableau-e5" },
-  { title: "Veille technologique", url: "/veille" },
-  { title: "Contact", url: "/contact" },
+  { title: "Expériences", url: "/experiences" },
+  { title: "Veille", url: "/veille" },
+  { title: "À propos", url: "/apropos" },
 ]
+
+const docsLinkClass =
+  "inline-flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-medium whitespace-nowrap text-warm-700 hover:bg-warm-50 transition-all duration-200"
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -23,12 +25,13 @@ export function Header() {
             <img src="/logo.png" alt="Logo Mattéo Grech" className="w-full h-full object-cover" />
           </div>
           <span className="font-bold text-lg text-foreground hidden sm:block">
-            <span className="text-warm-600">M.GRECH</span> Portfolio
+            <span className="text-warm-600">M.GRECH</span>
+            <span className="ml-2 text-xs font-medium text-muted-foreground">réseau · sécurité · IA</span>
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden xl:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => (
             <NavLink
               key={item.url}
@@ -44,6 +47,10 @@ export function Header() {
               {item.title}
             </NavLink>
           ))}
+          <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className={docsLinkClass}>
+            Base de connaissances
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
         </nav>
 
         {/* Right: Me Contacter button + mobile menu */}
@@ -57,7 +64,7 @@ export function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className="xl:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors"
+            className="lg:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menu"
           >
@@ -68,7 +75,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="xl:hidden border-t border-warm-200 bg-white/95 backdrop-blur-md">
+        <div className="lg:hidden border-t border-warm-200 bg-white/95 backdrop-blur-md">
           <nav className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
             {navItems.map((item) => (
               <NavLink
@@ -86,6 +93,16 @@ export function Header() {
                 {item.title}
               </NavLink>
             ))}
+            <a
+              href={DOCS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className="px-4 py-3 rounded-xl text-sm font-medium text-warm-700 hover:bg-warm-50 inline-flex items-center gap-1"
+            >
+              Base de connaissances
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
             <Link
               to="/contact"
               onClick={() => setMenuOpen(false)}
