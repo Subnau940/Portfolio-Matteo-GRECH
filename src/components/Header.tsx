@@ -6,112 +6,77 @@ import { DOCS_URL } from "@/lib/links"
 const navItems = [
   { title: "Projets", url: "/projets" },
   { title: "Expériences", url: "/experiences" },
-  { title: "Veille", url: "/veille" },
   { title: "À propos", url: "/apropos" },
 ]
 
-const docsLinkClass =
-  "inline-flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-medium whitespace-nowrap text-warm-700 hover:bg-warm-50 transition-all duration-200"
+const linkClass = ({ isActive }: { isActive: boolean }) =>
+  `px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 ${
+    isActive ? "text-foreground border-primary" : "text-muted-foreground border-transparent hover:text-foreground"
+  }`
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-warm-200 shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 rounded-xl overflow-hidden transition-transform duration-200 group-hover:scale-110 shadow-sm">
-            <img src="/logo.png" alt="Logo Mattéo Grech" className="w-full h-full object-cover" />
-          </div>
-          <span className="font-bold text-lg text-foreground hidden sm:block">
-            <span className="text-warm-600">M.GRECH</span>
-            <span className="ml-2 text-xs font-medium text-muted-foreground">réseau · sécurité · IA</span>
+    <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-border">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-3 group" onClick={() => setMenuOpen(false)}>
+          <img src="/logo.png" alt="" className="w-8 h-8 rounded-md object-cover" />
+          <span className="font-mono text-sm">
+            <span className="text-foreground font-medium">m.grech</span>
+            <span className="text-primary">_</span>
           </span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-1">
           {navItems.map((item) => (
-            <NavLink
-              key={item.url}
-              to={item.url}
-              className={({ isActive }) =>
-                `px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                  isActive
-                    ? "bg-warm-100 text-warm-700 font-semibold"
-                    : "text-muted-foreground hover:text-foreground hover:bg-gray-100"
-                }`
-              }
-            >
+            <NavLink key={item.url} to={item.url} className={linkClass}>
               {item.title}
             </NavLink>
           ))}
-          <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className={docsLinkClass}>
+          <a
+            href={DOCS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground inline-flex items-center gap-1 transition-colors"
+          >
             Base de connaissances
-            <ArrowUpRight className="h-4 w-4" />
+            <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
+          <Link to="/contact" className="ml-3 ios-button text-sm py-2 px-4">
+            Contact
+          </Link>
         </nav>
 
-        {/* Right: Me Contacter button + mobile menu */}
-        <div className="flex items-center gap-3">
-          <Link
-            to="/contact"
-            className="hidden sm:inline-flex items-center px-5 py-2 bg-gradient-to-r from-warm-500 to-warm-600 text-white rounded-xl font-semibold text-sm transition-all duration-200 hover:from-warm-600 hover:to-warm-700 hover:scale-105 hover:shadow-lg"
-          >
-            Me Contacter
-          </Link>
-
-          {/* Mobile hamburger */}
-          <button
-            className="lg:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-          >
-            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
+        <button
+          className="md:hidden p-2 text-muted-foreground hover:text-foreground"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Menu"
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
 
-      {/* Mobile menu */}
       {menuOpen && (
-        <div className="lg:hidden border-t border-warm-200 bg-white/95 backdrop-blur-md">
-          <nav className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.url}
-                to={item.url}
-                onClick={() => setMenuOpen(false)}
-                className={({ isActive }) =>
-                  `px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
-                    isActive
-                      ? "bg-warm-100 text-warm-700 font-semibold"
-                      : "text-muted-foreground hover:text-foreground hover:bg-gray-100"
-                  }`
-                }
-              >
-                {item.title}
-              </NavLink>
-            ))}
-            <a
-              href={DOCS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMenuOpen(false)}
-              className="px-4 py-3 rounded-xl text-sm font-medium text-warm-700 hover:bg-warm-50 inline-flex items-center gap-1"
-            >
-              Base de connaissances
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-            <Link
-              to="/contact"
-              onClick={() => setMenuOpen(false)}
-              className="mt-2 px-4 py-3 bg-gradient-to-r from-warm-500 to-warm-600 text-white rounded-xl font-semibold text-sm text-center"
-            >
-              Me Contacter
-            </Link>
-          </nav>
-        </div>
+        <nav className="md:hidden border-t border-border bg-background px-6 py-4 flex flex-col gap-1">
+          {navItems.map((item) => (
+            <NavLink key={item.url} to={item.url} onClick={() => setMenuOpen(false)} className={linkClass}>
+              {item.title}
+            </NavLink>
+          ))}
+          <a
+            href={DOCS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-2 text-sm font-medium text-muted-foreground inline-flex items-center gap-1"
+          >
+            Base de connaissances <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
+          <Link to="/contact" onClick={() => setMenuOpen(false)} className="mt-2 ios-button text-sm">
+            Contact
+          </Link>
+        </nav>
       )}
     </header>
   )
