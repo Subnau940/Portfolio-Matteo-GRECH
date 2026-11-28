@@ -19,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+				mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -64,16 +68,16 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				warm: {
-					50: '#f0fdfa',
-					100: '#ccfbf1',
-					200: '#99f6e4',
-					300: '#5eead4',
-					400: '#2dd4bf',
-					500: '#14b8a6',
-					600: '#0d9488',
-					700: '#0f766e',
-					800: '#115e59',
-					900: '#134e4a',
+					50: '#1c1214',
+					100: '#2a1416',
+					200: '#4a1c1f',
+					300: '#7a2a2e',
+					400: '#c9393e',
+					500: '#e5484d',
+					600: '#ec5d61',
+					700: '#f2777a',
+					800: '#f8a3a5',
+					900: '#fdd8d9',
 				}
 			},
 			borderRadius: {

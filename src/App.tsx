@@ -2,16 +2,14 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { Header } from "@/components/Header";
-import { NetworkBackground } from "@/components/NetworkBackground";
+import { Footer } from "@/components/Footer";
 import { useEffect } from "react";
 import Accueil from "./pages/Accueil";
 import Projets from "./pages/Projets";
 import APropos from "./pages/APropos";
 import Experiences from "./pages/Experiences";
-import TableauE5 from "./pages/TableauE5";
-import Veille from "./pages/Veille";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -32,21 +30,22 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col w-full relative">
-          <NetworkBackground />
+        <div className="min-h-screen flex flex-col w-full">
           <Header />
-          <main className="flex-1 relative z-10">
+          <main className="flex-1">
             <Routes>
               <Route path="/" element={<Accueil />} />
-              <Route path="/apropos" element={<APropos />} />
-              <Route path="/experiences" element={<Experiences />} />
               <Route path="/projets" element={<Projets />} />
-              <Route path="/tableau-e5" element={<TableauE5 />} />
-              <Route path="/veille" element={<Veille />} />
+              <Route path="/experiences" element={<Experiences />} />
+              <Route path="/apropos" element={<APropos />} />
               <Route path="/contact" element={<Contact />} />
+              {/* Anciennes pages retirées : on renvoie vers la page la plus proche */}
+              <Route path="/veille" element={<Navigate to="/apropos" replace />} />
+              <Route path="/tableau-e5" element={<Navigate to="/projets" replace />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
+          <Footer />
         </div>
       </BrowserRouter>
     </TooltipProvider>
