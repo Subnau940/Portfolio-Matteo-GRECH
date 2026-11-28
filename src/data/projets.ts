@@ -203,6 +203,23 @@ export const PROJETS: Projet[] = [
     liens: [{ label: "Documentation", href: `${DOCS_URL}/formation/routage-dynamique/`, kind: "doc" }],
   },
   {
+    id: "mitm-arp-dns",
+    title: "MITM — ARP spoofing & DNS spoofing",
+    contexte: "bachelor",
+    resume:
+      "TP mené sur une plateforme de lab isolée : empoisonnement ARP pour se placer en Man-in-the-Middle, interception d'un formulaire HTTP en clair, puis empoisonnement DNS. Conclu sur les contre-mesures réseau.",
+    points: [
+      "Empoisonnement ARP à sens unique puis bidirectionnel, avec son propre diagnostic (un seul sens intercepté au départ)",
+      "Interception d'identifiants transmis en clair sur un formulaire HTTP, analysée dans Wireshark",
+      "Contre-mesures : Dynamic ARP Inspection + DHCP Snooping, DNSSEC, TLS en défense en profondeur",
+    ],
+    tags: ["Défensif", "Documentation"],
+    statut: "Terminé",
+    annee: "2026",
+    stack: ["ARP", "DNS", "Wireshark", "Lab isolé"],
+    liens: [{ label: "Documentation", href: `${DOCS_URL}/formation/mitm-arp-dns/`, kind: "doc" }],
+  },
+  {
     id: "projets-bts",
     title: "Projets BTS SIO SISR",
     contexte: "formation",
