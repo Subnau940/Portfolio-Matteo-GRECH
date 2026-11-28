@@ -128,7 +128,58 @@ export const PROJETS: Projet[] = [
       { label: "Code", href: "https://github.com/elysabeth-studiolys/insider-threat", kind: "code" },
     ],
   },
-  // Les projets Bachelor (dont la HA pfSense) s'ajoutent ici avec contexte: "bachelor".
+  {
+    id: "ha-redondance",
+    title: "Haute disponibilité & redondance",
+    contexte: "bachelor",
+    resume:
+      "Un réseau sans point unique de défaillance : passerelle redondée en HSRP, maillage de switches sans boucle avec STP, liens agrégés en LACP — chaque mécanisme validé par une panne provoquée.",
+    points: [
+      "HSRP : bascule sur le routeur de secours en ~2 paquets perdus, retour automatique (preempt)",
+      "Diagnostic clé : le routage statique ne suivait pas la bascule, corrigé par OSPF",
+      "STP : un seul port bloqué pour supprimer la boucle, choix du root bridge expliqué",
+      "LACP : perte d'un câble d'un bundle sans aucune coupure",
+    ],
+    tags: ["Infra", "Documentation"],
+    statut: "Terminé",
+    annee: "2026",
+    stack: ["Cisco", "HSRP", "OSPF", "STP", "LACP", "Packet Tracer"],
+    liens: [{ label: "Documentation", href: `${DOCS_URL}/projets/reseau/haute-disponibilite/`, kind: "doc" }],
+  },
+  {
+    id: "vlan-acl",
+    title: "VLAN, routage inter-VLAN & ACL",
+    contexte: "bachelor",
+    resume:
+      "Réseau d'entreprise segmenté en quatre VLAN métier, routés en router-on-a-stick, puis cloisonnés par des ACL standard et étendues. Chaque règle prouvée par un test qui passe et un test qui échoue.",
+    points: [
+      "Segmentation par port, trunks 802.1Q, sous-interfaces et routage statique inter-sites",
+      "Constat de sécurité : le routage inter-VLAN casse l'isolation de niveau 2, les ACL la rétablissent",
+      "Placement raisonné des ACL (routeur, interface, sens) et ordre des règles",
+    ],
+    tags: ["Infra", "Défensif", "Documentation"],
+    statut: "Terminé",
+    annee: "2026",
+    stack: ["Cisco", "VLAN", "ACL", "802.1Q", "Packet Tracer"],
+    liens: [{ label: "Documentation", href: `${DOCS_URL}/projets/reseau/vlan-routage-acl/`, kind: "doc" }],
+  },
+  {
+    id: "routage-dynamique",
+    title: "Routage dynamique (RIP, OSPF)",
+    contexte: "bachelor",
+    resume:
+      "Deux domaines de routage, l'un en RIP, l'autre en OSPF, interconnectés proprement par redistribution sur un routeur frontière.",
+    points: [
+      "Comparaison distance vector / link state dans un cas concret",
+      "Limite des routes par défaut, puis redistribution avec gestion des métriques",
+      "Chemin vérifié de bout en bout par traceroute",
+    ],
+    tags: ["Infra", "Documentation"],
+    statut: "Terminé",
+    annee: "2026",
+    stack: ["Cisco", "RIP", "OSPF", "Packet Tracer"],
+    liens: [{ label: "Documentation", href: `${DOCS_URL}/projets/reseau/routage-dynamique/`, kind: "doc" }],
+  },
   {
     id: "projets-bts",
     title: "Projets BTS SIO SISR",
