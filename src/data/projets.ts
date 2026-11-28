@@ -93,7 +93,7 @@ export const PROJETS: Projet[] = [
   {
     id: "infra-ha-kiharo",
     title: "Infrastructure haute disponibilité (pfSense CARP, AD, GLPI)",
-    contexte: "perso",
+    contexte: "bachelor",
     resume:
       "Un socle réseau d'entreprise sans point unique de défaillance : deux pare-feu pfSense en cluster CARP/VIP, un Active Directory qui distribue DHCP et DNS pour que tout client rejoigne le réseau sans configuration, et GLPI pour l'inventaire et le support.",
     points: [
