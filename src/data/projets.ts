@@ -91,13 +91,35 @@ export const PROJETS: Projet[] = [
     ],
   },
   {
+    id: "infra-ha-kiharo",
+    title: "Infrastructure haute disponibilité (pfSense CARP, AD, GLPI)",
+    contexte: "bachelor",
+    resume:
+      "Un socle réseau d'entreprise sans point unique de défaillance : deux pare-feu pfSense en cluster CARP/VIP, un Active Directory qui distribue DHCP et DNS pour que tout client rejoigne le réseau sans configuration, et GLPI pour l'inventaire et le support.",
+    points: [
+      "Cluster pfSense CARP/VIP avec lien de synchronisation dédié (pfsync + XMLRPC)",
+      "Bascule automatique validée : un seul paquet perdu lors de la panne du pare-feu maître",
+      "AD DHCP/DNS promu contrôleur de domaine : les postes se configurent tout seuls",
+      "GLPI relié à l'AD par LDAP, puis segmentation en VLAN serveurs / clients",
+      "Approche incrémentale : chaque brique validée avant d'empiler la suivante",
+    ],
+    tags: ["Infra", "Défensif", "Documentation"],
+    statut: "En cours",
+    annee: "2026",
+    stack: ["pfSense", "CARP", "Active Directory", "GLPI", "VLAN", "VMware"],
+    liens: [
+      { label: "Documentation", href: "/Infrastructure-HA-pfSense-AD-GLPI.pdf", kind: "pdf" },
+      { label: "Focus HA CARP", href: "/HA-CARP-pfSense.pdf", kind: "pdf" },
+    ],
+  },
+  {
     id: "homelab",
     title: "Homelab sécurité",
     contexte: "perso",
     resume:
       "Un lab virtualisé monté dans un ordre réfléchi, qui me sert de terrain d'entraînement offensif et défensif.",
     points: [
-      "Pare-feu OPNsense, architecture pfSense en haute disponibilité (CARP) et VLAN dédiés",
+      "Pare-feu OPNsense, segmentation en VLAN",
       "Domaine Active Directory avec modèle de tiering T0 / T1 / T2",
       "SIEM Wazuh avec Active Response, supervision Zabbix",
     ],
@@ -128,7 +150,58 @@ export const PROJETS: Projet[] = [
       { label: "Code", href: "https://github.com/elysabeth-studiolys/insider-threat", kind: "code" },
     ],
   },
-  // Les projets Bachelor (dont la HA pfSense) s'ajoutent ici avec contexte: "bachelor".
+  {
+    id: "ha-redondance",
+    title: "Haute disponibilité & redondance",
+    contexte: "bachelor",
+    resume:
+      "Un réseau sans point unique de défaillance : passerelle redondée en HSRP, maillage de switches sans boucle avec STP, liens agrégés en LACP — chaque mécanisme validé par une panne provoquée.",
+    points: [
+      "HSRP : bascule sur le routeur de secours en ~2 paquets perdus, retour automatique (preempt)",
+      "Diagnostic clé : le routage statique ne suivait pas la bascule, corrigé par OSPF",
+      "STP : un seul port bloqué pour supprimer la boucle, choix du root bridge expliqué",
+      "LACP : perte d'un câble d'un bundle sans aucune coupure",
+    ],
+    tags: ["Infra", "Documentation"],
+    statut: "Terminé",
+    annee: "2026",
+    stack: ["Cisco", "HSRP", "OSPF", "STP", "LACP", "Packet Tracer"],
+    liens: [{ label: "Documentation", href: `${DOCS_URL}/projets/reseau/haute-disponibilite/`, kind: "doc" }],
+  },
+  {
+    id: "vlan-acl",
+    title: "VLAN, routage inter-VLAN & ACL",
+    contexte: "bachelor",
+    resume:
+      "Réseau d'entreprise segmenté en quatre VLAN métier, routés en router-on-a-stick, puis cloisonnés par des ACL standard et étendues. Chaque règle prouvée par un test qui passe et un test qui échoue.",
+    points: [
+      "Segmentation par port, trunks 802.1Q, sous-interfaces et routage statique inter-sites",
+      "Constat de sécurité : le routage inter-VLAN casse l'isolation de niveau 2, les ACL la rétablissent",
+      "Placement raisonné des ACL (routeur, interface, sens) et ordre des règles",
+    ],
+    tags: ["Infra", "Défensif", "Documentation"],
+    statut: "Terminé",
+    annee: "2026",
+    stack: ["Cisco", "VLAN", "ACL", "802.1Q", "Packet Tracer"],
+    liens: [{ label: "Documentation", href: `${DOCS_URL}/projets/reseau/vlan-routage-acl/`, kind: "doc" }],
+  },
+  {
+    id: "routage-dynamique",
+    title: "Routage dynamique (RIP, OSPF)",
+    contexte: "bachelor",
+    resume:
+      "Deux domaines de routage, l'un en RIP, l'autre en OSPF, interconnectés proprement par redistribution sur un routeur frontière.",
+    points: [
+      "Comparaison distance vector / link state dans un cas concret",
+      "Limite des routes par défaut, puis redistribution avec gestion des métriques",
+      "Chemin vérifié de bout en bout par traceroute",
+    ],
+    tags: ["Infra", "Documentation"],
+    statut: "Terminé",
+    annee: "2026",
+    stack: ["Cisco", "RIP", "OSPF", "Packet Tracer"],
+    liens: [{ label: "Documentation", href: `${DOCS_URL}/projets/reseau/routage-dynamique/`, kind: "doc" }],
+  },
   {
     id: "projets-bts",
     title: "Projets BTS SIO SISR",
