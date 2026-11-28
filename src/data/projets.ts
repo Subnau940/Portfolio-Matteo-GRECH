@@ -91,13 +91,35 @@ export const PROJETS: Projet[] = [
     ],
   },
   {
+    id: "infra-ha-kiharo",
+    title: "Infrastructure haute disponibilité (pfSense CARP, AD, GLPI)",
+    contexte: "perso",
+    resume:
+      "Un socle réseau d'entreprise sans point unique de défaillance : deux pare-feu pfSense en cluster CARP/VIP, un Active Directory qui distribue DHCP et DNS pour que tout client rejoigne le réseau sans configuration, et GLPI pour l'inventaire et le support.",
+    points: [
+      "Cluster pfSense CARP/VIP avec lien de synchronisation dédié (pfsync + XMLRPC)",
+      "Bascule automatique validée : un seul paquet perdu lors de la panne du pare-feu maître",
+      "AD DHCP/DNS promu contrôleur de domaine : les postes se configurent tout seuls",
+      "GLPI relié à l'AD par LDAP, puis segmentation en VLAN serveurs / clients",
+      "Approche incrémentale : chaque brique validée avant d'empiler la suivante",
+    ],
+    tags: ["Infra", "Défensif", "Documentation"],
+    statut: "En cours",
+    annee: "2026",
+    stack: ["pfSense", "CARP", "Active Directory", "GLPI", "VLAN", "VMware"],
+    liens: [
+      { label: "Documentation", href: "/Infrastructure-HA-pfSense-AD-GLPI.pdf", kind: "pdf" },
+      { label: "Focus HA CARP", href: "/HA-CARP-pfSense.pdf", kind: "pdf" },
+    ],
+  },
+  {
     id: "homelab",
     title: "Homelab sécurité",
     contexte: "perso",
     resume:
       "Un lab virtualisé monté dans un ordre réfléchi, qui me sert de terrain d'entraînement offensif et défensif.",
     points: [
-      "Pare-feu OPNsense, architecture pfSense en haute disponibilité (CARP) et VLAN dédiés",
+      "Pare-feu OPNsense, segmentation en VLAN",
       "Domaine Active Directory avec modèle de tiering T0 / T1 / T2",
       "SIEM Wazuh avec Active Response, supervision Zabbix",
     ],
