@@ -41,8 +41,8 @@ export const SECTIONS: { id: Contexte; titre: string; intro: string }[] = [
   },
   {
     id: "bachelor",
-    titre: "Projets Bachelor — Réseau & sécurité",
-    intro: "Infrastructures montées dans le cadre du Bachelor Cybersécurité et Administrateur Réseaux.",
+    titre: "Bachelor — TP & infrastructures",
+    intro: "Travaux pratiques et infrastructures réalisés dans le cadre du Bachelor Cybersécurité et Administrateur Réseaux (sujets de formation, pas des projets perso).",
   },
   {
     id: "formation",
@@ -166,7 +166,7 @@ export const PROJETS: Projet[] = [
     statut: "Terminé",
     annee: "2026",
     stack: ["Cisco", "HSRP", "OSPF", "STP", "LACP", "Packet Tracer"],
-    liens: [{ label: "Documentation", href: `${DOCS_URL}/projets/reseau/haute-disponibilite/`, kind: "doc" }],
+    liens: [{ label: "Documentation", href: `${DOCS_URL}/formation/haute-disponibilite/`, kind: "doc" }],
   },
   {
     id: "vlan-acl",
@@ -183,7 +183,7 @@ export const PROJETS: Projet[] = [
     statut: "Terminé",
     annee: "2026",
     stack: ["Cisco", "VLAN", "ACL", "802.1Q", "Packet Tracer"],
-    liens: [{ label: "Documentation", href: `${DOCS_URL}/projets/reseau/vlan-routage-acl/`, kind: "doc" }],
+    liens: [{ label: "Documentation", href: `${DOCS_URL}/formation/vlan-routage-acl/`, kind: "doc" }],
   },
   {
     id: "routage-dynamique",
@@ -200,7 +200,7 @@ export const PROJETS: Projet[] = [
     statut: "Terminé",
     annee: "2026",
     stack: ["Cisco", "RIP", "OSPF", "Packet Tracer"],
-    liens: [{ label: "Documentation", href: `${DOCS_URL}/projets/reseau/routage-dynamique/`, kind: "doc" }],
+    liens: [{ label: "Documentation", href: `${DOCS_URL}/formation/routage-dynamique/`, kind: "doc" }],
   },
   {
     id: "projets-bts",
